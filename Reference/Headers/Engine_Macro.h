@@ -96,13 +96,15 @@
 #define GET_SINGLE(classname)    classname::GetInstance()
 
 
-#define SHARED_CLASS(CLASSNAME)													\
+#define SHARED_CLASS(CLASSNAME, InitFunc)										\
 		public:																	\
 		template<typename ...Args>												\
 		static std::shared_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
 			std::shared_ptr<CLASSNAME> instance = std::shared_ptr<CLASSNAME>(	\
 				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
-			instance->Initialize(std::forward<Args>(_args)...);					\
+			if (InitFunc) {														\
+				InitFunc(std::forward<Args>(_args)...);							\
+			}																	\
 			return instance;													\
 		}																		\
 

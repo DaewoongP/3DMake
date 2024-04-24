@@ -2,21 +2,13 @@
 
 USING(Engine)
 
-Timer::Timer()
-	: mTimeDelta(0.f)
-{
-	ZeroMemory(&mFrameTime, sizeof(LARGE_INTEGER));
-	ZeroMemory(&mFixTime, sizeof(LARGE_INTEGER));
-	ZeroMemory(&mLastTime, sizeof(LARGE_INTEGER));
-	ZeroMemory(&mCpuTick, sizeof(LARGE_INTEGER));
-}
-
 HRESULT Timer::Initialize()
 {
 	QueryPerformanceCounter(&mFrameTime);
 	QueryPerformanceCounter(&mLastTime);
 	QueryPerformanceCounter(&mFixTime);
 	QueryPerformanceFrequency(&mCpuTick);
+	mTimeDelta = 0.f;
 
 	return S_OK;
 }

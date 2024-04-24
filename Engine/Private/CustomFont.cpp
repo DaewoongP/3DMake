@@ -2,7 +2,7 @@
 
 USING(Engine)
 
-HRESULT CustomFont::Initialize(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontFilePath)
+HRESULT CustomFont::Initialize_Font(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontFilePath)
 {
 	mDevice = _device;
 	mDeviceContext = _deviceContext;
