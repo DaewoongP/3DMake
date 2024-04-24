@@ -7,7 +7,7 @@ IMPLEMENT_SINGLETON(TimerManager)
 
 _float TimerManager::GetTimer(const std::wstring& _timerTag)
 {
-	std::shared_ptr<class Timer> timer = FindTimer(_timerTag);
+	std::shared_ptr<Timer> timer = FindTimer(_timerTag);
 	if (nullptr == timer)
 		return 0.0;
 
@@ -16,7 +16,7 @@ _float TimerManager::GetTimer(const std::wstring& _timerTag)
 
 void TimerManager::SetTimer(const std::wstring& _timerTag)
 {
-	std::shared_ptr<class Timer> timer = FindTimer(_timerTag);
+	std::shared_ptr<Timer> timer = FindTimer(_timerTag);
 	if (nullptr == timer)
 		return;
 
@@ -25,7 +25,7 @@ void TimerManager::SetTimer(const std::wstring& _timerTag)
 
 HRESULT TimerManager::AddTimer(const std::wstring& _timerTag)
 {
-	std::shared_ptr<class Timer> timer = FindTimer(_timerTag);
+	std::shared_ptr<Timer> timer = FindTimer(_timerTag);
 
 	if (nullptr != timer)
 	{
@@ -34,15 +34,12 @@ HRESULT TimerManager::AddTimer(const std::wstring& _timerTag)
 		return E_FAIL;
 	}
 	
-	timer = std::make_shared<class Timer>();
-	FAILED_CHECK_RETURN_MSG(timer->Initialize(), E_FAIL, TEXT("TimerManager::AddTimer\nFailed Create Timer"));
-
-	mTimers.emplace(_timerTag, timer);
+	mTimers.emplace(_timerTag, Timer::Create());
 
 	return S_OK;
 }
 
-std::shared_ptr<class Timer> TimerManager::FindTimer(const std::wstring& _timerTag)
+std::shared_ptr<Timer> TimerManager::FindTimer(const std::wstring& _timerTag)
 {
 	auto		iter = mTimers.find(_timerTag);
 

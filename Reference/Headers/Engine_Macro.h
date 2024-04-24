@@ -94,3 +94,24 @@
 		}														\
 
 #define GET_SINGLE(classname)    classname::GetInstance()
+
+
+#define SHARED_CLASS(CLASSNAME)													\
+		public:																	\
+		template<typename ...Args>												\
+		static std::shared_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
+			std::shared_ptr<CLASSNAME> instance = std::shared_ptr<CLASSNAME>(	\
+				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
+			instance->Initialize(std::forward<Args>(_args)...);					\
+			return instance;													\
+		}																		\
+
+#define UNIQUE_CLASS(CLASSNAME)													\
+		public:																	\
+		template<typename ...Args>												\
+		static std::unique_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
+			std::unique_ptr<CLASSNAME> instance = std::unique_ptr<CLASSNAME>(	\
+				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
+			instance->Initialize(std::forward<Args>(_args)...);					\
+			return instance;													\
+		}																		\

@@ -2,6 +2,7 @@
 #include "Engine_Defines.h"
 
 BEGIN(Engine)
+class Timer;
 
 class TimerManager
 {
@@ -18,10 +19,10 @@ public:
 	HRESULT		AddTimer(const std::wstring& _timerTag);
 
 private:
-	std::shared_ptr<class Timer> FindTimer(const std::wstring& _timerTag);
+	std::shared_ptr<Timer> FindTimer(const std::wstring& _timerTag);
 
 private:
-	_umap<std::wstring, std::shared_ptr<class Timer>>	mTimers;
+	_umap<std::wstring, std::shared_ptr<Timer>>	mTimers;
 };
 
 END

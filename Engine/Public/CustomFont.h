@@ -5,6 +5,7 @@ BEGIN(Engine)
 
 class CustomFont final
 {
+	SHARED_CLASS(CustomFont)
 public:
 	CustomFont() = default;
 	~CustomFont() = default;

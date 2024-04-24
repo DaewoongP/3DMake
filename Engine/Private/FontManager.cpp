@@ -14,12 +14,7 @@ HRESULT FontManager::AddFont(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceCo
 		return E_FAIL;
 	}
 	
-	std::shared_ptr<CustomFont> font = std::make_shared<CustomFont>();
-	NULL_CHECK_RETURN_MSG(font, E_FAIL, TEXT("FontManager::AddFont\n Failed Create Custom Font"));
-	// 추후 수정
-	font->Initialize(_device, _deviceContext, _fontFilePath);
-	
-	mFonts.emplace(_fontTag, font);
+	mFonts.emplace(_fontTag, CustomFont::Create(_device, _deviceContext, _fontFilePath));
 
 	return S_OK;
 }

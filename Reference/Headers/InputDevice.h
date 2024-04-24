@@ -44,7 +44,6 @@ private:
 	_byte                   mPreKeyState[MAX_DIK];
 	DIMOUSESTATE            mMouseState;
 	DIMOUSESTATE            mPreMouseState;
-
 };
 
 END

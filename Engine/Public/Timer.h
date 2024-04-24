@@ -5,7 +5,8 @@ BEGIN(Engine)
 
 class Timer
 {
-public:
+	SHARED_CLASS(Timer)
+private:
 	Timer();
 	~Timer() = default;
 
