@@ -14,7 +14,7 @@ HRESULT FontManager::AddFont(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceCo
 		return E_FAIL;
 	}
 	
-	mFonts.emplace(_fontTag, CustomFont::Create(_device, _deviceContext, _fontFilePath));
+	//mFonts.emplace(_fontTag, CustomFont::Create(_device, _deviceContext, _fontFilePath));
 
 	return S_OK;
 }

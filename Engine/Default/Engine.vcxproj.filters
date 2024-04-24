@@ -31,6 +31,9 @@
     <Filter Include="01. Utility\01. Font">
       <UniqueIdentifier>{77638309-ee61-4065-a1b2-728a86479100}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design">
+      <UniqueIdentifier>{e6d14683-78ee-4385-97c9-737de29a136c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\GameInstance.h">
@@ -65,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="..\public\CustomFont.h">
       <Filter>01. Utility\01. Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\Factory.h">
+      <Filter>02. Design</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

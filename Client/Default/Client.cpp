@@ -91,7 +91,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
     // Create MainApp
-    std::unique_ptr<MainApp> mainApp = MainApp::Create();
+    std::unique_ptr<MainApp> mainApp = std::make_unique<MainApp>();
+    mainApp->Initialize();
     _float timeAcc = 0.f;
 
     FAILED_RETURN(GAME->AddTimer(TEXT("Timer_Default")), FALSE);

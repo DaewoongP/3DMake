@@ -5,7 +5,7 @@ BEGIN(Engine)
 
 class Timer
 {
-	SHARED_CLASS(Timer, Initialize)
+	friend class Factory<Timer>;
 public:
 	Engine::_float	GetTimeDelta() { return mTimeDelta; }
 

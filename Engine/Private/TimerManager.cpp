@@ -1,6 +1,6 @@
 #include "TimerManager.h"
 #include "Timer.h"
-
+#include "Factory.h"
 USING(Engine)
 
 IMPLEMENT_SINGLETON(TimerManager)
@@ -34,7 +34,7 @@ HRESULT TimerManager::AddTimer(const std::wstring& _timerTag)
 		return E_FAIL;
 	}
 	
-	mTimers.emplace(_timerTag, Timer::Create());
+	mTimers.emplace(_timerTag, Factory<Timer>::CreateShared());
 
 	return S_OK;
 }
