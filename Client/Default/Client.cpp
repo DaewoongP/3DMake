@@ -4,10 +4,44 @@
 #include "framework.h"
 #include "Client.h"
 
+#include "MainApp.h"
+
+using namespace Client;
+
 #define MAX_LOADSTRING 100
 
+#ifdef _DEBUG
+void SetConsoleWindowSize(int _width, int _height)
+{
+    // 콘솔 핸들 얻음
+    wchar_t consoleTitle[MAX_PATH];
+    GetConsoleTitle(consoleTitle, MAX_PATH);
+    HWND console = FindWindow(NULL, consoleTitle);
+
+    // 콘솔 크기 조절
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect);
+    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, _width, _height, TRUE);
+}
+
+void SetConsoleWindowPosition(int _x, int _y)
+{
+    // 콘솔 핸들 얻음
+    wchar_t consoleTitle[MAX_PATH];
+    GetConsoleTitle(consoleTitle, MAX_PATH);
+    HWND console = FindWindow(NULL, consoleTitle);
+
+    // 콘솔 위치 조절
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect);
+    MoveWindow(console, _x, _y, ConsoleRect.right - ConsoleRect.left, ConsoleRect.bottom - ConsoleRect.top, TRUE);
+}
+
+#endif //_DEBUG
+
 // 전역 변수:
-HINSTANCE hInst;                                // 현재 인스턴스입니다.
+HINSTANCE ghInst;                                // 현재 인스턴스입니다.
+HWND	ghWnd;
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
@@ -22,10 +56,27 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+#ifdef _DEBUG
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+    if (::AllocConsole() == TRUE)
+    {
+        FILE* nfp[3];
+        freopen_s(nfp + 0, "CONOUT$", "rb", stdin);
+        freopen_s(nfp + 1, "CONOUT$", "wb", stdout);
+        freopen_s(nfp + 2, "CONOUT$", "wb", stderr);
+        std::ios::sync_with_stdio();
+    }
+
+    int consoleCX = 800, consoleCY = 600;
+    // Set console size
+    SetConsoleWindowSize(consoleCX, consoleCY);
+    // Set console position
+    SetConsoleWindowPosition(0, 0);
+#endif // _DEBUG
+
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
-    // TODO: 여기에 코드를 입력합니다.
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -42,14 +93,38 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    // Create MainApp
+    std::unique_ptr<MainApp> pMainApp = std::make_unique<MainApp>();
+    pMainApp->Initialize();
+
+    // Main Loop
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (WM_QUIT == msg.message)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
+
+        pMainApp->Tick(0.1f);
+        pMainApp->Render();
+
+        /* MainApp 객체의 처리. */
+        /*if (TimerAcc >= 1.0 / 60.0)
+        {
+            pGameInstance->Set_Timer(TEXT("Timer_60"));
+
+            pMainApp->Tick(pGameInstance->Get_Timer(TEXT("Timer_60")));
+            pMainApp->Render();
+
+            TimerAcc = { 0.0 };
+        }*/
     }
 
     return (int) msg.wParam;
@@ -95,10 +170,12 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+   ghInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+
+   RECT	rcWindow = { 0, 0, gWinSizeX, gWinSizeY };
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+       CW_USEDEFAULT, 0, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -107,6 +184,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   ghWnd = hWnd;
 
    return TRUE;
 }
@@ -132,7 +211,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
             case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                DialogBox(ghInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
