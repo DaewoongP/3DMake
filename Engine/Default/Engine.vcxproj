@@ -23,12 +23,23 @@
     <ClInclude Include="..\Public\Engine_Macro.h" />
     <ClInclude Include="..\Public\Engine_Struct.h" />
     <ClInclude Include="..\Public\Engine_Typedef.h" />
+    <ClInclude Include="..\Public\Factory.h" />
+    <ClInclude Include="..\public\CustomFont.h" />
+    <ClInclude Include="..\public\FontManager.h" />
     <ClInclude Include="..\public\GameInstance.h" />
-    <ClInclude Include="..\public\Graphic_Device.h" />
+    <ClInclude Include="..\public\GraphicDevice.h" />
+    <ClInclude Include="..\public\InputDevice.h" />
+    <ClInclude Include="..\public\Timer.h" />
+    <ClInclude Include="..\public\TimerManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\private\CustomFont.cpp" />
+    <ClCompile Include="..\private\FontManager.cpp" />
     <ClCompile Include="..\private\GameInstance.cpp" />
-    <ClCompile Include="..\private\Graphic_Device.cpp" />
+    <ClCompile Include="..\private\GraphicDevice.cpp" />
+    <ClCompile Include="..\private\InputDevice.cpp" />
+    <ClCompile Include="..\private\Timer.cpp" />
+    <ClCompile Include="..\private\TimerManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

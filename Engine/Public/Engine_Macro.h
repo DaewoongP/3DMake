@@ -1,6 +1,7 @@
 #pragma once
 ///////////////////////// My Macros //////////////////////////////////
 #define			PURE							= 0
+#define			MAX_DIK							256
 #define			CharToWChar(_pChar, _pWchar)	MultiByteToWideChar(CP_ACP, 0, _pChar, MAX_PATH, _pWchar, MAX_PATH);
 #define         WCharToChar(_pWchar, _pChar)    WideCharToMultiByte(CP_ACP, 0, _pWchar, -1, _pChar, MAX_PATH, nullptr, nullptr);
 #define D3DCOLOR_ARGB(a,r,g,b) \

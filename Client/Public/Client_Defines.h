@@ -11,4 +11,4 @@ namespace Client
 extern HINSTANCE ghInst;
 extern HWND ghWnd;
 
-#define GAME		GET_SINGLE(Engine::GameInstance)
+#define CLIENT_FRAME		60.f

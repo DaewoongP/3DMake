@@ -6,35 +6,32 @@
 
 #include "MainApp.h"
 
-using namespace Client;
+USING(Client)
+USING(Engine)
 
 #define MAX_LOADSTRING 100
 
 #ifdef _DEBUG
-void SetConsoleWindowSize(int _width, int _height)
+void SetConsoleWindowSize(_int _width, _int _height)
 {
-    // 콘솔 핸들 얻음
-    wchar_t consoleTitle[MAX_PATH];
+    _tchar consoleTitle[MAX_PATH];
     GetConsoleTitle(consoleTitle, MAX_PATH);
     HWND console = FindWindow(NULL, consoleTitle);
 
-    // 콘솔 크기 조절
-    RECT ConsoleRect;
-    GetWindowRect(console, &ConsoleRect);
-    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, _width, _height, TRUE);
+    RECT consoleRect;
+    GetWindowRect(console, &consoleRect);
+    MoveWindow(console, consoleRect.left, consoleRect.top, _width, _height, TRUE);
 }
 
-void SetConsoleWindowPosition(int _x, int _y)
+void SetConsoleWindowPosition(_int _x, _int _y)
 {
-    // 콘솔 핸들 얻음
-    wchar_t consoleTitle[MAX_PATH];
+    _tchar consoleTitle[MAX_PATH];
     GetConsoleTitle(consoleTitle, MAX_PATH);
     HWND console = FindWindow(NULL, consoleTitle);
 
-    // 콘솔 위치 조절
-    RECT ConsoleRect;
-    GetWindowRect(console, &ConsoleRect);
-    MoveWindow(console, _x, _y, ConsoleRect.right - ConsoleRect.left, ConsoleRect.bottom - ConsoleRect.top, TRUE);
+    RECT consoleRect;
+    GetWindowRect(console, &consoleRect);
+    MoveWindow(console, _x, _y, consoleRect.right - consoleRect.left, consoleRect.bottom - consoleRect.top, TRUE);
 }
 
 #endif //_DEBUG
@@ -68,7 +65,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         std::ios::sync_with_stdio();
     }
 
-    int consoleCX = 800, consoleCY = 600;
+    _int consoleCX = 800, consoleCY = 600;
     // Set console size
     SetConsoleWindowSize(consoleCX, consoleCY);
     // Set console position
@@ -94,8 +91,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
     // Create MainApp
-    std::unique_ptr<MainApp> pMainApp = std::make_unique<MainApp>();
-    pMainApp->Initialize();
+    std::unique_ptr<MainApp> mainApp = std::make_unique<MainApp>();
+    mainApp->Initialize();
+
+    _float timeAcc = 0.f;
+
+    FAILED_RETURN(GAME->AddTimer(TEXT("Timer_Default")), FALSE);
+    FAILED_RETURN(GAME->AddTimer(TEXT("Timer_60")), FALSE);
 
     // Main Loop
     while (true)
@@ -112,19 +114,19 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             }
         }
 
-        pMainApp->Tick(0.1f);
-        pMainApp->Render();
+        GAME->SetTimer(TEXT("Timer_Default"));
+        timeAcc += GAME->GetTimer(TEXT("Timer_Default"));
 
         /* MainApp 객체의 처리. */
-        /*if (TimerAcc >= 1.0 / 60.0)
+        if (timeAcc >= 1.f / CLIENT_FRAME)
         {
-            pGameInstance->Set_Timer(TEXT("Timer_60"));
+            GAME->SetTimer(TEXT("Timer_60"));
 
-            pMainApp->Tick(pGameInstance->Get_Timer(TEXT("Timer_60")));
-            pMainApp->Render();
+            mainApp->Tick(GAME->GetTimer(TEXT("Timer_60")));
+            mainApp->Render();
 
-            TimerAcc = { 0.0 };
-        }*/
+            timeAcc = { 0.0 };
+        }
     }
 
     return (int) msg.wParam;
@@ -172,10 +174,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    ghInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   RECT	rcWindow = { 0, 0, gWinSizeX, gWinSizeY };
+   RECT	windowRect = { 0, 0, gWinSizeX, gWinSizeY };
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-       CW_USEDEFAULT, 0, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top, nullptr, nullptr, hInstance, nullptr);
+       CW_USEDEFAULT, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {

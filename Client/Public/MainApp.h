@@ -12,12 +12,19 @@ public:
 
 public:
 	HRESULT Initialize();
-	void Tick(Engine::_float _TimeDelta);
+	void Tick(Engine::_float _timeDelta);
 	HRESULT Render();
 
 private:
 	ComPtr<ID3D11Device>		mDevice;
-	ComPtr<ID3D11DeviceContext>	mContext;
+	ComPtr<ID3D11DeviceContext>	mDeviceContext;
+
+#ifdef _DEBUG
+private:
+	Engine::_float	mTimeAcc;
+	std::wstring	mFPS;
+	Engine::_uint	mNumRenders;
+#endif
 };
 
 END

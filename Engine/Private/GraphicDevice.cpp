@@ -1,19 +1,9 @@
-#include "Graphic_Device.h"
+#include "GraphicDevice.h"
 
-IMPLEMENT_SINGLETON(Engine::Graphic_Device)
+IMPLEMENT_SINGLETON(Engine::GraphicDevice)
 
-Engine::Graphic_Device::Graphic_Device()
-	: mDevice(nullptr)
-	, mDeviceContext(nullptr)
-{
-}
-
-Engine::Graphic_Device::~Graphic_Device()
-{
-}
-
-HRESULT Engine::Graphic_Device::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _WinMode, _uint _WinCX, _uint _WinCY, 
-	_Inout_ ComPtr<ID3D11Device>& _Device, _Inout_ ComPtr<ID3D11DeviceContext>& _DeviceContext)
+HRESULT Engine::GraphicDevice::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _winMode, _uint _winCX, _uint _winCY, 
+	_Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext)
 {
 	_uint		flag = 0;
 
@@ -22,14 +12,12 @@ HRESULT Engine::Graphic_Device::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _Win
 #endif
 
 	D3D_FEATURE_LEVEL		featureLV;
-
 	FAILED_CHECK_RETURN_MSG(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, 0, flag, nullptr, 0, D3D11_SDK_VERSION,
-		&mDevice, &featureLV, &mDeviceContext), E_FAIL, TEXT("Engine::Graphic_Device::Initialize\nFailed Create Device"));
+		&mDevice, &featureLV, &mDeviceContext), E_FAIL, TEXT("Engine::GraphicDevice::Initialize\nFailed Create Device"));
 
-
-	FAILED_RETURN(ReadySwapChain(_hWnd, _WinMode, _WinCX, _WinCY), E_FAIL);
+	FAILED_RETURN(ReadySwapChain(_hWnd, _winMode, _winCX, _winCY), E_FAIL);
 	FAILED_RETURN(ReadyBackBufferRenderTargetView(), E_FAIL);
-	FAILED_RETURN(ReadyDepthStencilRenderTargetView(_WinCX, _WinCY), E_FAIL);
+	FAILED_RETURN(ReadyDepthStencilRenderTargetView(_winCX, _winCY), E_FAIL);
 
 	ComPtr<ID3D11RenderTargetView> rtv[1] = {
 		mBackBufferRTV.Get(),
@@ -42,29 +30,29 @@ HRESULT Engine::Graphic_Device::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _Win
 
 	ViewPortDesc.TopLeftX = 0.f;
 	ViewPortDesc.TopLeftY = 0.f;
-	ViewPortDesc.Width = _float(_WinCX);
-	ViewPortDesc.Height = _float(_WinCY);
+	ViewPortDesc.Width = _float(_winCX);
+	ViewPortDesc.Height = _float(_winCY);
 	ViewPortDesc.MinDepth = 0.f;
 	ViewPortDesc.MaxDepth = 1.f;
 
 	mDeviceContext->RSSetViewports(1, &ViewPortDesc);
 
-	_Device = mDevice;
-	_DeviceContext = mDeviceContext;
+	_device = mDevice;
+	_deviceContext = mDeviceContext;
 
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::ClearBackBuffer(_float4 _ClearColor)
+HRESULT Engine::GraphicDevice::ClearBackBuffer(_float4 _clearColor)
 {
 	NULL_CHECK_RETURN_MSG(mDeviceContext, E_FAIL, TEXT("DeviceContext NULL"));
 
-	mDeviceContext->ClearRenderTargetView(mBackBufferRTV.Get(), (_float*)&_ClearColor);
+	mDeviceContext->ClearRenderTargetView(mBackBufferRTV.Get(), (_float*)&_clearColor);
 
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::ClearDepthStencilView()
+HRESULT Engine::GraphicDevice::ClearDepthStencilView()
 {
 	NULL_CHECK_RETURN_MSG(mDeviceContext, E_FAIL, TEXT("DeviceContext NULL"));
 
@@ -73,16 +61,16 @@ HRESULT Engine::Graphic_Device::ClearDepthStencilView()
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::Present()
+HRESULT Engine::GraphicDevice::Present()
 {
 	NULL_CHECK_RETURN_MSG(mSwapChain, E_FAIL, TEXT("SwapChain NULL"));
 
-	FAILED_CHECK_RETURN_MSG(mSwapChain->Present(0, 0), E_FAIL, TEXT("Engine::Graphic_Device::Present\n Failed Present"));
+	FAILED_CHECK_RETURN_MSG(mSwapChain->Present(0, 0), E_FAIL, TEXT("Engine::GraphicDevice::Present\n Failed Present"));
 	
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::ReadySwapChain(HWND _hWnd, GRAPHICDESC::WINMODE _WinMode, _uint _WinCX, _uint _WinCY)
+HRESULT Engine::GraphicDevice::ReadySwapChain(HWND _hWnd, GRAPHICDESC::WINMODE _winMode, _uint _winCX, _uint _winCY)
 {
 	ComPtr<IDXGIDevice> device;
 	mDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(device.GetAddressOf()));
@@ -96,8 +84,8 @@ HRESULT Engine::Graphic_Device::ReadySwapChain(HWND _hWnd, GRAPHICDESC::WINMODE 
 	DXGI_SWAP_CHAIN_DESC	swapChain;
 	ZeroMemory(&swapChain, sizeof(DXGI_SWAP_CHAIN_DESC));
 
-	swapChain.BufferDesc.Width = _WinCX;
-	swapChain.BufferDesc.Height = _WinCY;
+	swapChain.BufferDesc.Width = _winCX;
+	swapChain.BufferDesc.Height = _winCY;
 	swapChain.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	swapChain.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	swapChain.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
@@ -110,39 +98,39 @@ HRESULT Engine::Graphic_Device::ReadySwapChain(HWND _hWnd, GRAPHICDESC::WINMODE 
 	swapChain.SampleDesc.Count = 1;
 
 	swapChain.OutputWindow = _hWnd;
-	swapChain.Windowed = static_cast<_bool>(_WinMode);
+	swapChain.Windowed = static_cast<_bool>(_winMode);
 	swapChain.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
-	FAILED_CHECK_RETURN_MSG(factory->CreateSwapChain(mDevice.Get(), &swapChain, mSwapChain.GetAddressOf()), E_FAIL, TEXT("Engine::Graphic_Device::ReadySwapChain\nFailed CreateSwapChain"));
+	FAILED_CHECK_RETURN_MSG(factory->CreateSwapChain(mDevice.Get(), &swapChain, mSwapChain.GetAddressOf()), E_FAIL, TEXT("Engine::GraphicDevice::ReadySwapChain\nFailed CreateSwapChain"));
 
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::ReadyBackBufferRenderTargetView()
+HRESULT Engine::GraphicDevice::ReadyBackBufferRenderTargetView()
 {
-	NULL_CHECK_RETURN_MSG(mDevice, E_FAIL, TEXT("Engine::Graphic_Device::ReadyBackBufferRenderTargetView\nDevice NULL"));
+	NULL_CHECK_RETURN_MSG(mDevice, E_FAIL, TEXT("Engine::GraphicDevice::ReadyBackBufferRenderTargetView\nDevice NULL"));
 
 	ComPtr<ID3D11Texture2D> BackBufferTexture = nullptr;
 
 	FAILED_CHECK_RETURN_MSG(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(BackBufferTexture.GetAddressOf())), E_FAIL,
-		TEXT("Engine::Graphic_Device::ReadyBackBufferRenderTargetView\nFailed GetBuffer"));
+		TEXT("Engine::GraphicDevice::ReadyBackBufferRenderTargetView\nFailed GetBuffer"));
 
 	FAILED_CHECK_RETURN_MSG(mDevice->CreateRenderTargetView(BackBufferTexture.Get(), nullptr, mBackBufferRTV.GetAddressOf()), E_FAIL,
-		TEXT("Engine::Graphic_Device::ReadyBackBufferRenderTargetView\nFailed Create RenderTarget"));
+		TEXT("Engine::GraphicDevice::ReadyBackBufferRenderTargetView\nFailed Create RenderTarget"));
 
 	return S_OK;
 }
 
-HRESULT Engine::Graphic_Device::ReadyDepthStencilRenderTargetView(_uint _WinCX, _uint _WinCY)
+HRESULT Engine::GraphicDevice::ReadyDepthStencilRenderTargetView(_uint _winCX, _uint _winCY)
 {
-	NULL_CHECK_RETURN_MSG(mDevice, E_FAIL, TEXT("Engine::Graphic_Device::ReadyDepthStencilRenderTargetView\nDevice NULL"));
+	NULL_CHECK_RETURN_MSG(mDevice, E_FAIL, TEXT("Engine::GraphicDevice::ReadyDepthStencilRenderTargetView\nDevice NULL"));
 
 	ComPtr<ID3D11Texture2D> DepthStencilTexture = nullptr;
 	D3D11_TEXTURE2D_DESC	TextureDesc;
 	ZeroMemory(&TextureDesc, sizeof(D3D11_TEXTURE2D_DESC));
 
-	TextureDesc.Width = _WinCX;
-	TextureDesc.Height = _WinCY;
+	TextureDesc.Width = _winCX;
+	TextureDesc.Height = _winCY;
 	TextureDesc.MipLevels = 1;
 	TextureDesc.ArraySize = 1;
 	TextureDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -154,7 +142,7 @@ HRESULT Engine::Graphic_Device::ReadyDepthStencilRenderTargetView(_uint _WinCX, 
 	TextureDesc.CPUAccessFlags = 0;
 	TextureDesc.MiscFlags = 0;
 
-	FAILED_CHECK_RETURN_MSG(mDevice->CreateTexture2D(&TextureDesc, nullptr, DepthStencilTexture.GetAddressOf()), E_FAIL, TEXT("Engine::Graphic_Device::ReadyDepthStencilRenderTargetView\nFailed Create Texture2D"));
+	FAILED_CHECK_RETURN_MSG(mDevice->CreateTexture2D(&TextureDesc, nullptr, DepthStencilTexture.GetAddressOf()), E_FAIL, TEXT("Engine::GraphicDevice::ReadyDepthStencilRenderTargetView\nFailed Create Texture2D"));
 	FAILED_CHECK_RETURN_MSG(mDevice->CreateDepthStencilView(DepthStencilTexture.Get(), nullptr, mDepthStencilView.GetAddressOf()), E_FAIL,
 		L"Failed CreateDepthStencilView");
 

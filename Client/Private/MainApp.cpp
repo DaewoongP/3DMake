@@ -4,7 +4,12 @@ USING(Engine)
 
 Client::MainApp::MainApp()
 	: mDevice(nullptr)
-	, mContext(nullptr)
+	, mDeviceContext(nullptr)
+#ifdef _DEBUG
+	, mTimeAcc(0.f)
+	, mFPS(TEXT(""))
+	, mNumRenders(0)
+#endif // _DEBUG
 {
 }
 
@@ -15,22 +20,30 @@ Client::MainApp::~MainApp()
 
 HRESULT Client::MainApp::Initialize()
 {
-	Engine::GRAPHICDESC		GraphicDesc;
-	ZeroMemory(&GraphicDesc, sizeof(Engine::GRAPHICDESC));
+	GRAPHICDESC		graphicDesc;
+	ZeroMemory(&graphicDesc, sizeof(GRAPHICDESC));
 
-	GraphicDesc.hWnd = ghWnd;
-	GraphicDesc.ViewportSizeX = gWinSizeX;
-	GraphicDesc.ViewportSizeY = gWinSizeY;
-	GraphicDesc.WinMode = Engine::GRAPHICDESC::WINMODE::WM_WIN;
+	graphicDesc.hWnd = ghWnd;
+	graphicDesc.ViewportSizeX = gWinSizeX;
+	graphicDesc.ViewportSizeY = gWinSizeY;
+	graphicDesc.WinMode = GRAPHICDESC::WINMODE::WM_WIN;
 
-	FAILED_RETURN(GAME->Initialize(ghInst, GraphicDesc, mDevice, mContext), E_FAIL);
-	
+	FAILED_RETURN(GAME->Initialize(ghInst, graphicDesc, mDevice, mDeviceContext), E_FAIL);
+
+#ifdef _DEBUG
+	FAILED_RETURN(GAME->AddFont(mDevice, mDeviceContext, TEXT("Font_135"), TEXT("../../Resource/Font/135ex.spritefont")), E_FAIL);
+#endif // _DEBUG
+
 	return S_OK;
 }
 
-void Client::MainApp::Tick(_float _TimeDelta)
+void Client::MainApp::Tick(_float _timeDelta)
 {
-	GAME->Tick(_TimeDelta);
+#ifdef _DEBUG
+	mTimeAcc += _timeDelta;
+#endif
+
+	GAME->Tick(_timeDelta);
 }
 
 HRESULT Client::MainApp::Render()
@@ -39,6 +52,21 @@ HRESULT Client::MainApp::Render()
 	FAILED_RETURN(GAME->ClearDepthStencilView(), E_FAIL);
 	//FAILED_RETURN(m_pRenderer->Draw_RenderGroup(), E_FAIL);
 	//FAILED_RETURN(GAME->Render_Level(), E_FAIL);
+
+
+#ifdef _DEBUG
+	++mNumRenders;
+
+	if (mTimeAcc >= 1.f)
+	{
+		mFPS = TEXT("fps : ") + std::to_wstring(mNumRenders);
+
+		mNumRenders = 0;
+		mTimeAcc = 0;
+	}
+	GAME->RenderFont(TEXT("Font_135"), mFPS, _float2(0.f, 0.f));
+
+#endif
 
 	FAILED_RETURN(GAME->Present(), E_FAIL);
 
