@@ -102,18 +102,40 @@
 		static std::shared_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
 			std::shared_ptr<CLASSNAME> instance = std::shared_ptr<CLASSNAME>(	\
 				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
-			if (InitFunc) {														\
-				InitFunc(std::forward<Args>(_args)...);							\
+			if (!instance->InitFunc(std::forward<Args>(_args)...)){				\
+				instance.reset();												\
+				return nullptr;													\
 			}																	\
 			return instance;													\
 		}																		\
 
-#define UNIQUE_CLASS(CLASSNAME)													\
+#define SHARED_CLASS_NO_INIT(CLASSNAME)											\
+		public:																	\
+		template<typename ...Args>												\
+		static std::shared_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
+			std::shared_ptr<CLASSNAME> instance = std::shared_ptr<CLASSNAME>(	\
+				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
+			return instance;													\
+		}																		\
+
+#define UNIQUE_CLASS(CLASSNAME, InitFunc)										\
 		public:																	\
 		template<typename ...Args>												\
 		static std::unique_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
 			std::unique_ptr<CLASSNAME> instance = std::unique_ptr<CLASSNAME>(	\
 				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
-			instance->Initialize(std::forward<Args>(_args)...);					\
+			if (!instance->InitFunc(std::forward<Args>(_args)...)){				\
+				instance.reset();												\
+				return nullptr;													\
+			}																	\
+			return instance;													\
+		}																		\
+
+#define UNIQUE_CLASS_NO_INIT(CLASSNAME)											\
+		public:																	\
+		template<typename ...Args>												\
+		static std::unique_ptr<CLASSNAME> Create(Args&& ..._args)			{	\
+			std::unique_ptr<CLASSNAME> instance = std::unique_ptr<CLASSNAME>(	\
+				new CLASSNAME, [](CLASSNAME* ptr) { delete ptr; });				\
 			return instance;													\
 		}																		\

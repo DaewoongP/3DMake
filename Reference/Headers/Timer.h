@@ -5,14 +5,13 @@ BEGIN(Engine)
 
 class Timer
 {
+	SHARED_CLASS(Timer, Initialize)
 public:
 	Engine::_float	GetTimeDelta() { return mTimeDelta; }
 
 public:
 	HRESULT		Initialize();
 	void		Tick();
-
-	SHARED_CLASS(Timer, nullptr)
 
 private:
 	LARGE_INTEGER			mFrameTime;

@@ -6,6 +6,7 @@ BEGIN(Client)
 
 class MainApp
 {
+	UNIQUE_CLASS(MainApp, Initialize)
 public:
 	MainApp();
 	~MainApp();
