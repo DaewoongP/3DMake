@@ -1,11 +1,10 @@
 #pragma once
-#include "Factory.h"
+#include "Engine_Defines.h"
 
 BEGIN(Engine)
 
 class Timer
 {
-	friend class Factory<Timer>;
 public:
 	Engine::_float	GetTimeDelta() { return mTimeDelta; }
 

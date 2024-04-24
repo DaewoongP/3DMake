@@ -58,6 +58,8 @@ using namespace DirectX;
 #include "Engine_Macro.h"
 #include "Engine_Struct.h"
 
+#include "Factory.h"
+
 #ifdef _DEBUG
 
 #define _CRTDBG_MAP_ALLOC

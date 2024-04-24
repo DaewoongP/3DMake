@@ -5,7 +5,6 @@ BEGIN(Engine)
 
 class Timer
 {
-	friend class Factory<Timer>;
 public:
 	Engine::_float	GetTimeDelta() { return mTimeDelta; }
 
