@@ -1,5 +1,7 @@
 #include "Graphic_Device.h"
 
+IMPLEMENT_SINGLETON(Engine::Graphic_Device)
+
 Engine::Graphic_Device::Graphic_Device()
 	: mDevice(nullptr)
 	, mDeviceContext(nullptr)
@@ -25,7 +27,7 @@ HRESULT Engine::Graphic_Device::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _Win
 		&mDevice, &featureLV, &mDeviceContext), E_FAIL, TEXT("Engine::Graphic_Device::Initialize\nFailed Create Device"));
 
 
-	/*FAILED_RETURN(ReadySwapChain(_hWnd, _WinMode, _WinCX, _WinCY), E_FAIL);
+	FAILED_RETURN(ReadySwapChain(_hWnd, _WinMode, _WinCX, _WinCY), E_FAIL);
 	FAILED_RETURN(ReadyBackBufferRenderTargetView(), E_FAIL);
 	FAILED_RETURN(ReadyDepthStencilRenderTargetView(_WinCX, _WinCY), E_FAIL);
 
@@ -48,7 +50,7 @@ HRESULT Engine::Graphic_Device::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _Win
 	mDeviceContext->RSSetViewports(1, &ViewPortDesc);
 
 	_Device = mDevice;
-	_DeviceContext = mDeviceContext;*/
+	_DeviceContext = mDeviceContext;
 
 	return S_OK;
 }

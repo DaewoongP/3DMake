@@ -19,8 +19,8 @@ public: /* Graphic_Device */
 	HRESULT ClearDepthStencilView();
 	HRESULT Present();
 
-private:
-	class Graphic_Device* gd = nullptr;
+public:
+	static void Release();
 };
 
 END

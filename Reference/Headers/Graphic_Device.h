@@ -5,6 +5,7 @@ BEGIN(Engine)
 
 class Graphic_Device
 {
+	DECLARE_SINGLETON(Graphic_Device)
 public:
 	Graphic_Device();
 	~Graphic_Device();

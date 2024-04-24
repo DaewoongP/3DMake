@@ -10,6 +10,7 @@ Client::MainApp::MainApp()
 
 Client::MainApp::~MainApp()
 {
+	GAME->Release();
 }
 
 HRESULT Client::MainApp::Initialize()
@@ -34,12 +35,12 @@ void Client::MainApp::Tick(_float _TimeDelta)
 
 HRESULT Client::MainApp::Render()
 {
-	//FAILED_RETURN(GAME->ClearBackBuffer(_float4(0.f, 0.f, 1.f, 1.f)), E_FAIL);
-	//FAILED_RETURN(GAME->ClearDepthStencilView(), E_FAIL);
+	FAILED_RETURN(GAME->ClearBackBuffer(_float4(0.f, 0.f, 1.f, 1.f)), E_FAIL);
+	FAILED_RETURN(GAME->ClearDepthStencilView(), E_FAIL);
 	//FAILED_RETURN(m_pRenderer->Draw_RenderGroup(), E_FAIL);
 	//FAILED_RETURN(GAME->Render_Level(), E_FAIL);
 
-	//FAILED_RETURN(GAME->Present(), E_FAIL);
+	FAILED_RETURN(GAME->Present(), E_FAIL);
 
 	return S_OK;
 }

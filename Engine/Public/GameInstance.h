@@ -20,9 +20,7 @@ public: /* Graphic_Device */
 	HRESULT Present();
 
 public:
-
-private:
-	class Graphic_Device* gd = nullptr;
+	static void Release();
 };
 
 END

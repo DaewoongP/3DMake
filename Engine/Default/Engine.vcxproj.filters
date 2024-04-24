@@ -16,6 +16,15 @@
     <Filter Include="01. Utility\00. GameInstance">
       <UniqueIdentifier>{5ebadae6-c679-4c90-86ea-2a4965c61c84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00. System\01. Timer">
+      <UniqueIdentifier>{1308f743-d054-46ed-b17c-bbd06cc207f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. System\00. Device\00. Graphic">
+      <UniqueIdentifier>{a5a5a1a8-a023-4a9d-9c10-904b32f4f357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. System\00. Device\01. Input">
+      <UniqueIdentifier>{3848ba0e-8a13-4d09-b199-7053b42dd33d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\GameInstance.h">
@@ -30,11 +39,11 @@
     <ClInclude Include="..\Public\Engine_Typedef.h">
       <Filter>99. Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\Graphic_Device.h">
-      <Filter>00. System\00. Device</Filter>
-    </ClInclude>
     <ClInclude Include="..\Public\Engine_Struct.h">
       <Filter>99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Graphic_Device.h">
+      <Filter>00. System\00. Device\00. Graphic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +51,7 @@
       <Filter>01. Utility\00. GameInstance</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Graphic_Device.cpp">
-      <Filter>00. System\00. Device</Filter>
+      <Filter>00. System\00. Device\00. Graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

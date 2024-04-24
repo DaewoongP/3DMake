@@ -56,12 +56,40 @@
 
 
 
-#define DECLARE_SINGLETON(classname)				\
-public:												\
-    static classname* GetInstance()					\
-    {												\
-        static classname sInstance;					\
-        return &sInstance;							\
-    }
+//#define DECLARE_SINGLETON(classname)				\
+//public:												\
+//    static classname* GetInstance()					\
+//    {												\
+//        static classname sInstance;					\
+//        return &sInstance;							\
+//    }
+
+#define NO_COPY(CLASSNAME)										\
+		private:												\
+		CLASSNAME(const CLASSNAME&) = delete;					\
+		CLASSNAME& operator = (const CLASSNAME&) = delete;		
+
+#define DECLARE_SINGLETON(CLASSNAME)							\
+		NO_COPY(CLASSNAME)										\
+		private:												\
+		static CLASSNAME*	m_pInstance;						\
+		public:													\
+		static CLASSNAME*	GetInstance( void );				\
+		static void DestroyInstance( void );					\
+
+#define IMPLEMENT_SINGLETON(CLASSNAME)							\
+		CLASSNAME*	CLASSNAME::m_pInstance = nullptr;			\
+		CLASSNAME*	CLASSNAME::GetInstance( void )	{			\
+			if(nullptr == m_pInstance) {						\
+				m_pInstance = new CLASSNAME;					\
+			}													\
+			return m_pInstance;									\
+		}														\
+		void CLASSNAME::DestroyInstance( void ) {		\
+			if(nullptr != m_pInstance)							\
+			{													\
+				delete m_pInstance;								\
+			}													\
+		}														\
 
 #define GET_SINGLE(classname)    classname::GetInstance()
