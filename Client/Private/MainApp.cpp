@@ -19,7 +19,7 @@ HRESULT Client::MainApp::Initialize()
 	graphicDesc.ViewportSizeY = clientHeight;
 	graphicDesc.WinMode = GRAPHICDESC::WINMODE::WM_WIN;
 
-	FAILED_RETURN(GAME->Initialize(ghInst, graphicDesc, mDevice, mDeviceContext), E_FAIL);
+	FAILED_RETURN(GAME->Initialize(ghInst, static_cast<_uint>(LevelType::LEVELEND), graphicDesc, mDevice, mDeviceContext), E_FAIL);
 	FAILED_RETURN(GAME->OpenLevel(static_cast<_uint>(LevelType::LOGO), Factory<LevelLogo>::CreateUnique()), E_FAIL);
 
 #ifdef _DEBUG

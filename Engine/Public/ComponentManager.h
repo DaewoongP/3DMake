@@ -27,4 +27,4 @@ private:
 
 END
 
-#define COM		GET_SINGLE(ComponentManager)
+#define COM		GET_SINGLE(Engine::ComponentManager)
