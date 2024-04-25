@@ -10,13 +10,18 @@ public:
 	GraphicDevice() = default;
 	~GraphicDevice() = default;
 
-public:
 	HRESULT Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _winMode,
 		_uint _winCX, _uint _winCY, _Inout_ ComPtr<ID3D11Device>& _device,
 		_Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext);
+
+private:
 	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
 	HRESULT ClearDepthStencilView();
 	HRESULT Present();
+
+public:
+	HRESULT Render_Begin(_float4 _clearColor);
+	HRESULT Render_End();
 
 private:
 	ComPtr<ID3D11Device>				mDevice;

@@ -28,6 +28,15 @@
     <ClInclude Include="..\public\FontManager.h" />
     <ClInclude Include="..\public\GameInstance.h" />
     <ClInclude Include="..\public\GraphicDevice.h" />
+    <ClInclude Include="..\public\ImguiManager.h" />
+    <ClInclude Include="..\Public\Imgui\imconfig.h" />
+    <ClInclude Include="..\Public\Imgui\imgui.h" />
+    <ClInclude Include="..\Public\Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="..\Public\Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\Public\Imgui\imgui_internal.h" />
+    <ClInclude Include="..\Public\Imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\Public\Imgui\imstb_textedit.h" />
+    <ClInclude Include="..\Public\Imgui\imstb_truetype.h" />
     <ClInclude Include="..\public\InputDevice.h" />
     <ClInclude Include="..\public\Timer.h" />
     <ClInclude Include="..\public\TimerManager.h" />
@@ -37,6 +46,35 @@
     <ClCompile Include="..\private\FontManager.cpp" />
     <ClCompile Include="..\private\GameInstance.cpp" />
     <ClCompile Include="..\private\GraphicDevice.cpp" />
+    <ClCompile Include="..\private\ImguiManager.cpp" />
+    <ClCompile Include="..\Private\Imgui\imgui.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_demo.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_draw.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_impl_dx11.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_impl_win32.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_tables.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
+    <ClCompile Include="..\Private\Imgui\imgui_widgets.cpp">
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IncludeInUnityFile>
+      <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
+    </ClCompile>
     <ClCompile Include="..\private\InputDevice.cpp" />
     <ClCompile Include="..\private\Timer.cpp" />
     <ClCompile Include="..\private\TimerManager.cpp" />
@@ -139,7 +177,7 @@
       <PreprocessorDefinitions>_DEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>../Public/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Public/;../Public/Imgui/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -162,7 +200,7 @@ call Copy.bat</Command>
       <PreprocessorDefinitions>NDEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>../Public/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Public/;../Public/Imgui/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

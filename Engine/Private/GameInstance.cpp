@@ -2,6 +2,7 @@
 #include "GraphicDevice.h"
 #include "TimerManager.h"
 #include "FontManager.h"
+#include "ImguiManager.h"
 
 USING(Engine)
 
@@ -11,6 +12,7 @@ HRESULT GameInstance::Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDe
 {
     FAILED_RETURN(GRAPHIC->Initialize(_graphicDesc.hWnd, _graphicDesc.WinMode, _graphicDesc.ViewportSizeX, _graphicDesc.ViewportSizeY, _device, _deviceContext), E_FAIL);
     FAILED_RETURN(INPUT->Initialize(_hInst, _graphicDesc.hWnd), E_FAIL);
+    FAILED_RETURN(GUI->Initialize(_graphicDesc.hWnd, _device, _deviceContext), E_FAIL);
 
     return S_OK;
 }
@@ -18,12 +20,20 @@ HRESULT GameInstance::Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDe
 void GameInstance::Tick(_float _timeDelta)
 {
     INPUT->Tick();
+    
+    GRAPHIC->Render_Begin(_float4(0.f, 0.f, 1.f, 0.f));
+    GUI->Begin();
+
+    GUI->End();
+    GRAPHIC->Render_End();
 }
 
 #pragma region GraphicDevice
-HRESULT GameInstance::ClearBackBuffer(_float4 _clearColor) { return GRAPHIC->ClearBackBuffer(_clearColor); }
-HRESULT GameInstance::ClearDepthStencilView() { return GRAPHIC->ClearDepthStencilView(); }
-HRESULT GameInstance::Present() { return GRAPHIC->Present(); }
+HRESULT GameInstance::RenderBegin(_float4 _clearColor) { return GRAPHIC->Render_Begin(_clearColor); }
+HRESULT GameInstance::RenderEnd() { return GRAPHIC->Render_End(); }
+//HRESULT GameInstance::ClearBackBuffer(_float4 _clearColor) { return GRAPHIC->ClearBackBuffer(_clearColor); }
+//HRESULT GameInstance::ClearDepthStencilView() { return GRAPHIC->ClearDepthStencilView(); }
+//HRESULT GameInstance::Present() { return GRAPHIC->Present(); }
 #pragma endregion
 
 #pragma region TimerManager
@@ -43,6 +53,11 @@ HRESULT GameInstance::AddFont(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceC
 HRESULT GameInstance::RenderFont(const std::wstring& _fontTag, const std::wstring& _text, const _float2& _position, _fvector _color, _float _rotation, const _float2& _origin, _float _scale) { return FONT->Render(_fontTag, _text, _position, _color, _rotation, _origin, _scale); }
 #pragma endregion
 
+#pragma region ImguiManager
+void GameInstance::Imgui_Begin() { GUI->Begin(); }
+void GameInstance::Imgui_End() { GUI->End(); }
+#pragma endregion
+
 void GameInstance::Release()
 {
     GAME->DestroyInstance();
@@ -54,4 +69,6 @@ void GameInstance::Release()
     INPUT->DestroyInstance();
 
     FONT->DestroyInstance();
+
+    GUI->DestroyInstance();
 }
