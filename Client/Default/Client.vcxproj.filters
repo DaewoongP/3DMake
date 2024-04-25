@@ -13,6 +13,12 @@
     <Filter Include="01. Levels">
       <UniqueIdentifier>{e511db66-7edf-4c29-9fca-66b48f5e24d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Levels\00. Loading">
+      <UniqueIdentifier>{8825f7d6-34e3-4587-9f79-b2fefa1c85eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Levels\01. Loader">
+      <UniqueIdentifier>{d917e1f2-187b-4253-bc9c-146fa2ac7297}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -35,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="..\public\LevelLogo.h">
       <Filter>01. Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\LevelLoading.h">
+      <Filter>01. Levels\00. Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Loader.h">
+      <Filter>01. Levels\01. Loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="..\private\LevelLogo.cpp">
       <Filter>01. Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\LevelLoading.cpp">
+      <Filter>01. Levels\00. Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Loader.cpp">
+      <Filter>01. Levels\01. Loader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

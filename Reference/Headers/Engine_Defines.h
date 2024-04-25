@@ -63,6 +63,7 @@ using namespace DirectX;
 #include "Engine_Typedef.h"
 #include "Engine_Macro.h"
 #include "Engine_Struct.h"
+#include "Engine_Function.h"
 
 #include "Factory.h"
 
@@ -80,3 +81,5 @@ using namespace DirectX;
 #endif
 
 #endif // _DEBUG
+
+using namespace Engine::Types;

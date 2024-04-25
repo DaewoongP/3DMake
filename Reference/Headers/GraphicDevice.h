@@ -29,7 +29,7 @@ private:
 	ComPtr<ID3D11DepthStencilView>		mDepthStencilView;
 
 private:
-	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
+	HRESULT ClearBackBuffer(_float4 _clearColor);
 	HRESULT ClearDepthStencilView();
 	HRESULT Present();
 

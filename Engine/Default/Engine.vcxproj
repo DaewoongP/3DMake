@@ -23,6 +23,7 @@
     <ClInclude Include="..\public\ComponentManager.h" />
     <ClInclude Include="..\public\Composite.h" />
     <ClInclude Include="..\Public\Engine_Defines.h" />
+    <ClInclude Include="..\Public\Engine_Function.h" />
     <ClInclude Include="..\Public\Engine_Macro.h" />
     <ClInclude Include="..\Public\Engine_Struct.h" />
     <ClInclude Include="..\Public\Engine_Typedef.h" />

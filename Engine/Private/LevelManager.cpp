@@ -8,7 +8,8 @@ HRESULT LevelManager::OpenLevel(_uint _levelIndex, std::unique_ptr<Level>&& _new
 {
 	mLevelIndex = _levelIndex;
 
-	mCurrentLevel.reset(_newLevel.get());
+	mCurrentLevel.reset();
+	mCurrentLevel = std::move(_newLevel);
 
 	return S_OK;
 }

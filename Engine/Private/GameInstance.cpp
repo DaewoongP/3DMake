@@ -25,6 +25,8 @@ void GameInstance::Tick(_float _timeDelta)
 {
     INPUT->Tick();
     
+    LEVEL->Tick(_timeDelta);
+
     GRAPHIC->RenderBegin(_float4(0.f, 0.f, 1.f, 0.f));
     GUI->Begin();
 
@@ -86,4 +88,6 @@ void GameInstance::Release()
     FONT->DestroyInstance();
 
     GUI->DestroyInstance();
+
+    LEVEL->DestroyInstance();
 }

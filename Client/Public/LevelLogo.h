@@ -1,10 +1,18 @@
 #pragma once
 #include "Level.h"
+#include "Client_Defines.h"
 
-BEGIN(Engine)
+BEGIN(Client)
 
-class LevelLogo : public Level
+class LevelLogo : public Engine::Level
 {
+public:
+	LevelLogo() = default;
+	~LevelLogo() = default;
+
+public:
+	virtual HRESULT Initialize() override;
+	virtual void Tick(_float _timeDelta) override;
 };
 
 END

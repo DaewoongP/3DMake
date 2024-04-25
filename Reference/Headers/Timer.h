@@ -6,7 +6,7 @@ BEGIN(Engine)
 class Timer
 {
 public:
-	Engine::_float	GetTimeDelta() { return mTimeDelta; }
+	_float	GetTimeDelta() { return mTimeDelta; }
 
 public:
 	HRESULT		Initialize();
@@ -18,7 +18,7 @@ private:
 	LARGE_INTEGER			mLastTime;
 	LARGE_INTEGER			mCpuTick;
 
-	Engine::_float			mTimeDelta;
+	_float					mTimeDelta;
 };
 
 END

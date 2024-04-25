@@ -12,8 +12,7 @@ public:
 
 public:
 	HRESULT Initialize();
-	void Tick(Engine::_float _timeDelta);
-	HRESULT Render();
+	void Tick(_float _timeDelta);
 
 private:
 	ComPtr<ID3D11Device>		mDevice;
