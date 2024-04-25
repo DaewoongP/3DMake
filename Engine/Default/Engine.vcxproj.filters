@@ -119,6 +119,7 @@
     </ClInclude>
     <ClInclude Include="..\Public\imgui.h">
       <Filter>01. Utility\97. Imgui\Inc</Filter>
+	</ClInclude>
     <ClInclude Include="..\public\Component.h">
       <Filter>01. Utility\01. Component</Filter>
     </ClInclude>

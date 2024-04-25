@@ -3,6 +3,7 @@
 #include "TimerManager.h"
 #include "FontManager.h"
 #include "ImguiManager.h"
+#include "LevelManager.h"
 
 USING(Engine)
 
@@ -57,6 +58,20 @@ HRESULT GameInstance::RenderFont(const std::wstring& _fontTag, const std::wstrin
 void GameInstance::ImguiBegin() { GUI->Begin(); }
 void GameInstance::ImguiEnd() { GUI->End(); }
 #pragma endregion
+
+#pragma region LevelManager
+HRESULT GameInstance::OpenLevel(_uint _levelIndex, std::unique_ptr<Level>&& _newLevel)
+{
+    ClearLevelResources(LEVEL->GetCurrentLevelIndex());
+
+    return LEVEL->OpenLevel(_levelIndex, std::move(_newLevel));
+}
+#pragma endregion
+
+HRESULT GameInstance::ClearLevelResources(_uint _preLevelIndex)
+{
+    return S_OK;
+}
 
 void GameInstance::Release()
 {

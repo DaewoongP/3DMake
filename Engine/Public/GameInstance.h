@@ -41,6 +41,12 @@ public: /* ImguiManager */
 	void ImguiBegin();
 	void ImguiEnd();
 
+public: /* LevelManager */
+	HRESULT OpenLevel(_uint _levelIndex, std::unique_ptr<class Level>&& _newLevel);
+
+private:
+	HRESULT ClearLevelResources(_uint _preLevelIndex);
+
 public:
 	static void Release();
 };

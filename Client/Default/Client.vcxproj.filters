@@ -4,11 +4,14 @@
     <Filter Include="98. Default">
       <UniqueIdentifier>{02ff42b6-bb95-4f3e-944c-1043eeca69bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="99. Headers">
+      <UniqueIdentifier>{7bcda3f9-16df-489e-8d4c-4745cfca7637}</UniqueIdentifier>
+    </Filter>
     <Filter Include="00. MainApp">
       <UniqueIdentifier>{2ead762d-8be8-41f9-a5c5-8c07d0dacf90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="99. Headers">
-      <UniqueIdentifier>{7bcda3f9-16df-489e-8d4c-4745cfca7637}</UniqueIdentifier>
+    <Filter Include="01. Levels">
+      <UniqueIdentifier>{e511db66-7edf-4c29-9fca-66b48f5e24d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +33,9 @@
     <ClInclude Include="..\public\MainApp.h">
       <Filter>00. MainApp</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\LevelLogo.h">
+      <Filter>01. Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="..\private\MainApp.cpp">
       <Filter>00. MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\LevelLogo.cpp">
+      <Filter>01. Levels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

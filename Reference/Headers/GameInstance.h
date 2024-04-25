@@ -11,6 +11,10 @@ public:
 	GameInstance() = default;
 	~GameInstance() = default;
 
+public: /* Device & Context */
+	ComPtr<ID3D11Device> GetDevice() const;
+	ComPtr<ID3D11DeviceContext> GetDeviceContext() const;
+
 public:
 	HRESULT Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDesc, _Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext);
 	void Tick(_float _timeDelta);
@@ -36,6 +40,12 @@ public: /* FontManager */
 public: /* ImguiManager */
 	void ImguiBegin();
 	void ImguiEnd();
+
+public: /* LevelManager */
+	HRESULT OpenLevel(_uint _levelIndex, std::unique_ptr<class Level>&& _newLevel);
+
+private:
+	HRESULT ClearLevelResources(_uint _preLevelIndex);
 
 public:
 	static void Release();
