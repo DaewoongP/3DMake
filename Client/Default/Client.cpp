@@ -112,15 +112,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             }
         }
 
-        GAME->SetTimer(TEXT("Timer_Default"));
-        timeAcc += GAME->GetTimer(TEXT("Timer_Default"));
+        GAME->TickTimeDelta(TEXT("Timer_Default"));
+        timeAcc += GAME->GetTimeDelta(TEXT("Timer_Default"));
 
         /* MainApp 객체의 처리. */
         if (timeAcc >= 1.f / CLIENT_FRAME)
         {
-            GAME->SetTimer(TEXT("Timer_60"));
+            GAME->TickTimeDelta(TEXT("Timer_60"));
 
-            mainApp->Tick(GAME->GetTimer(TEXT("Timer_60")));
+            mainApp->Tick(GAME->GetTimeDelta(TEXT("Timer_60")));
 
             timeAcc = 0.f;
         }

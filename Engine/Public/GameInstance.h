@@ -24,9 +24,12 @@ public: /* GraphicDevice */
 	HRESULT RenderEnd();
 
 public: /* TimerManager */
-	_float		GetTimer(const std::wstring& _timerTag);
-	void		SetTimer(const std::wstring& _timerTag);
+	// 타이머 Tick함수에 따라 처리된 이전 틱과 현재 틱의 TimeDelta를 반환하는 함수
+	_float		GetTimeDelta(const std::wstring& _timerTag);
+	// 타이머 태그에 해당하는 타이머를 찾아 Tick함수를 호출하게 하는 함수.
+	void		TickTimeDelta(const std::wstring& _timerTag);
 	HRESULT		AddTimer(const std::wstring& _timerTag);
+	void		Invoke(std::function<void(void*)> _func, void* _arg, _float _callTime, _bool _loop = false);
 
 public: /* InputDevice */
 	_bool		GetDIKeyState(_ubyte _keyID, InputDevice::KEYSTATE _state = InputDevice::KEY_PRESSING);

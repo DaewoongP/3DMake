@@ -6,7 +6,7 @@ BEGIN(Engine)
 class Timer
 {
 public:
-	_float	GetTimeDelta() { return mTimeDelta; }
+	_float	GetTimeDelta() const { return mTimeDelta; }
 
 public:
 	HRESULT		Initialize();

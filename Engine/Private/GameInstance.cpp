@@ -27,6 +27,8 @@ void GameInstance::Tick(_float _timeDelta)
     
     LEVEL->Tick(_timeDelta);
 
+    TIMER->Tick(_timeDelta);
+
     GRAPHIC->RenderBegin(_float4(0.f, 0.f, 1.f, 0.f));
     GUI->Begin();
 
@@ -40,9 +42,10 @@ HRESULT GameInstance::RenderEnd() { return GRAPHIC->RenderEnd(); }
 #pragma endregion
 
 #pragma region TimerManager
-_float GameInstance::GetTimer(const std::wstring& _timerTag) { return TIMER->GetTimer(_timerTag); }
-void GameInstance::SetTimer(const std::wstring& _timerTag) { return TIMER->SetTimer(_timerTag); }
+_float GameInstance::GetTimeDelta(const std::wstring& _timerTag) { return TIMER->GetTimeDelta(_timerTag); }
+void GameInstance::TickTimeDelta(const std::wstring& _timerTag) { return TIMER->TickTimeDelta(_timerTag); }
 HRESULT GameInstance::AddTimer(const std::wstring& _timerTag) { return TIMER->AddTimer(_timerTag); }
+void GameInstance::Invoke(std::function<void(void*)> _func, void* _arg, _float _callTime, _bool _loop) { return TIMER->Invoke(_func, _arg, _callTime, _loop); }
 #pragma endregion
 
 #pragma region InputDevice
