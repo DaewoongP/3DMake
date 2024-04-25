@@ -18,6 +18,7 @@ public:
 
 private:
 	HRESULT LoadingForLogo();
+	HRESULT LoadingForPlay1();
 
 private:
 	HANDLE				mhThread;

@@ -3,6 +3,7 @@
 #include "GameInstance.h"
 
 #include "LevelLogo.h"
+#include "LevelPlay1.h"
 
 Client::LevelLoading::~LevelLoading()
 {
@@ -19,12 +20,7 @@ HRESULT Client::LevelLoading::Initialize(LevelType _levelType)
 
 void Client::LevelLoading::Tick(_float _timeDelta)
 {
-	DebugFunc::Text("Loading...");
-
-	if (false == GAME->GetDIKeyState(DIK_RETURN, Engine::InputDevice::KEY_DOWN))
-		return;
-
-	DebugFunc::Text("Enter!");
+	DebugFunc::Text("Loading...", _timeDelta);
 
 	if (false == mLoader->GetFinished())
 		return;
@@ -35,6 +31,9 @@ void Client::LevelLoading::Tick(_float _timeDelta)
 	{
 	case LevelType::LOGO:
 		level = Engine::Factory<Client::LevelLogo>::CreateUnique();
+		break;
+	case LevelType::PLAY1:
+		level = Engine::Factory<Client::LevelPlay1>::CreateUnique();
 		break;
 	}
 

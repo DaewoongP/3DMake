@@ -146,6 +146,7 @@
     <ClInclude Include="..\Public\Client_Defines.h" />
     <ClInclude Include="..\public\LevelLoading.h" />
     <ClInclude Include="..\public\LevelLogo.h" />
+    <ClInclude Include="..\public\LevelPlay1.h" />
     <ClInclude Include="..\public\Loader.h" />
     <ClInclude Include="..\public\MainApp.h" />
     <ClInclude Include="Client.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="..\private\LevelLoading.cpp" />
     <ClCompile Include="..\private\LevelLogo.cpp" />
+    <ClCompile Include="..\private\LevelPlay1.cpp" />
     <ClCompile Include="..\private\Loader.cpp" />
     <ClCompile Include="..\private\MainApp.cpp" />
     <ClCompile Include="Client.cpp" />

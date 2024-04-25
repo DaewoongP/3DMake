@@ -52,6 +52,13 @@ HRESULT Client::Loader::Loading()
 	case LevelType::LOGO:
 		hr = LoadingForLogo();
 		break;
+	case LevelType::PLAY1:
+		hr = LoadingForPlay1();
+		break;
+	default:
+		MSG_BOX("Loader::Loading\n Loading Func Failed");
+		__debugbreak();
+		break;
 	}
 
 	LeaveCriticalSection(&mCriticalSection);
@@ -63,7 +70,13 @@ HRESULT Client::Loader::Loading()
 
 HRESULT Client::Loader::LoadingForLogo()
 {
+	mFinished = true;
 
+	return S_OK;
+}
+
+HRESULT Client::Loader::LoadingForPlay1()
+{
 	mFinished = true;
 
 	return S_OK;

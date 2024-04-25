@@ -6,7 +6,7 @@ namespace Client
 	const unsigned int gWinSizeX = 1280;
 	const unsigned int gWinSizeY = 720;
 
-	enum class LevelType { LOADING, LOGO, LEVELEND };
+	enum class LevelType { LOADING, LOGO, PLAY1, LEVELEND };
 }
 
 extern HINSTANCE ghInst;

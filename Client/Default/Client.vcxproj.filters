@@ -13,11 +13,17 @@
     <Filter Include="01. Levels">
       <UniqueIdentifier>{e511db66-7edf-4c29-9fca-66b48f5e24d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Levels\00. Loading">
+    <Filter Include="01. Levels\98. Loading">
       <UniqueIdentifier>{8825f7d6-34e3-4587-9f79-b2fefa1c85eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Levels\01. Loader">
+    <Filter Include="01. Levels\99. Loader">
       <UniqueIdentifier>{d917e1f2-187b-4253-bc9c-146fa2ac7297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Levels\00. Logo">
+      <UniqueIdentifier>{face6c48-cc4e-4f76-bbff-2909cb5464bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Levels\01. Level1">
+      <UniqueIdentifier>{09460942-6d03-451d-b862-f0b8b30c5cb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,14 +45,17 @@
     <ClInclude Include="..\public\MainApp.h">
       <Filter>00. MainApp</Filter>
     </ClInclude>
-    <ClInclude Include="..\public\LevelLogo.h">
-      <Filter>01. Levels</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\LevelLoading.h">
-      <Filter>01. Levels\00. Loading</Filter>
+      <Filter>01. Levels\98. Loading</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Loader.h">
-      <Filter>01. Levels\01. Loader</Filter>
+      <Filter>01. Levels\99. Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\LevelPlay1.h">
+      <Filter>01. Levels\01. Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\LevelLogo.h">
+      <Filter>01. Levels\00. Logo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,14 +78,17 @@
     <ClCompile Include="..\private\MainApp.cpp">
       <Filter>00. MainApp</Filter>
     </ClCompile>
-    <ClCompile Include="..\private\LevelLogo.cpp">
-      <Filter>01. Levels</Filter>
-    </ClCompile>
     <ClCompile Include="..\private\LevelLoading.cpp">
-      <Filter>01. Levels\00. Loading</Filter>
+      <Filter>01. Levels\98. Loading</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Loader.cpp">
-      <Filter>01. Levels\01. Loader</Filter>
+      <Filter>01. Levels\99. Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\LevelPlay1.cpp">
+      <Filter>01. Levels\01. Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\LevelLogo.cpp">
+      <Filter>01. Levels\00. Logo</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
