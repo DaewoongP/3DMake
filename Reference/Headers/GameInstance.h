@@ -44,6 +44,10 @@ public: /* ImguiManager */
 public: /* LevelManager */
 	HRESULT OpenLevel(_uint _levelIndex, std::unique_ptr<class Level>&& _newLevel);
 
+public: /* ComponentManager */
+	HRESULT AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<class Component> _prototype);
+	std::shared_ptr<class Component> CloneComponent(_uint _levelIndex, const std::wstring& _prototypeTag, void* _arg);
+
 private:
 	HRESULT ClearLevelResources(_uint _preLevelIndex);
 
