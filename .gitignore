@@ -419,6 +419,5 @@ Tool.lib
 *.txt
 *.dat
 *.zip
-*.spritefont
 
-Resources/
+IGResource/
