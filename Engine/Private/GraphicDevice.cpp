@@ -1,7 +1,7 @@
 #include "GraphicDevice.h"
 
 IMPLEMENT_SINGLETON(Engine::GraphicDevice)
-
+USING(Engine)
 HRESULT Engine::GraphicDevice::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _winMode, _uint _winCX, _uint _winCY, 
 	_Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext)
 {
@@ -67,6 +67,21 @@ HRESULT Engine::GraphicDevice::Present()
 
 	FAILED_CHECK_RETURN_MSG(mSwapChain->Present(0, 0), E_FAIL, TEXT("Engine::GraphicDevice::Present\n Failed Present"));
 	
+	return S_OK;
+}
+
+HRESULT GraphicDevice::Render_Begin(_float4 _clearColor)
+{
+	mDeviceContext->OMSetRenderTargets(1, mBackBufferRTV.GetAddressOf(), mDepthStencilView.Get());
+	ClearBackBuffer(_clearColor);
+	ClearDepthStencilView();
+	//mDeviceContext->RSSetViewports(1, &_viewport);
+	return S_OK;
+}
+
+HRESULT GraphicDevice::Render_End()
+{
+	Present();
 	return S_OK;
 }
 

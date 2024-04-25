@@ -16,6 +16,8 @@ public:
 	void Tick(_float _timeDelta);
 
 public: /* GraphicDevice */
+	HRESULT RenderBegin(_float4 _clearColor);
+	HRESULT RenderEnd();
 	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
 	HRESULT ClearDepthStencilView();
 	HRESULT Present();
@@ -33,6 +35,10 @@ public: /* InputDevice */
 public: /* FontManager */
 	HRESULT AddFont(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontTag, const std::wstring& _fontFilePath);
 	HRESULT RenderFont(const std::wstring& _fontTag, const std::wstring& _text, const _float2& _position, _fvector _color = XMVectorSet(1.f, 1.f, 1.f, 1.f), _float _rotation = 0.f, const _float2& _origin = _float2(0.f, 0.f), _float _scale = 1.f);
+
+public: /* ImguiManager */
+	void Imgui_Begin();
+	void Imgui_End();
 
 public:
 	static void Release();
