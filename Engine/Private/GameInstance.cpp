@@ -8,6 +8,9 @@ USING(Engine)
 
 IMPLEMENT_SINGLETON(Engine::GameInstance)
 
+ComPtr<ID3D11Device> GameInstance::GetDevice() const { return GRAPHIC->GetDevice(); }
+ComPtr<ID3D11DeviceContext> GameInstance::GetDeviceContext() const { return GRAPHIC->GetDeviceContext(); }
+
 HRESULT GameInstance::Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDesc, _Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext)
 {
     FAILED_RETURN(GRAPHIC->Initialize(_graphicDesc.hWnd, _graphicDesc.WinMode, _graphicDesc.ViewportSizeX, _graphicDesc.ViewportSizeY, _device, _deviceContext), E_FAIL);
