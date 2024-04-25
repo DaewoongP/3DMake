@@ -23,4 +23,4 @@ private:
 
 END
 
-#define FONT		GET_SINGLE(FontManager)
+#define FONT		GET_SINGLE(Engine::FontManager)

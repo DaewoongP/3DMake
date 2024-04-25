@@ -8,7 +8,7 @@ class LevelLoading : public Engine::Level
 {
 public:
 	LevelLoading() = default;
-	~LevelLoading() = default;
+	~LevelLoading();
 
 public:
 	HRESULT Initialize(LevelType _levelType);

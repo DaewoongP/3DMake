@@ -24,4 +24,4 @@ private:
 
 END
 
-#define LEVEL		GET_SINGLE(LevelManager)
+#define LEVEL		GET_SINGLE(Engine::LevelManager)

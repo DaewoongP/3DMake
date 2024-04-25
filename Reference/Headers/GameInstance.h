@@ -53,4 +53,4 @@ public:
 
 END
 
-#define GAME		GET_SINGLE(GameInstance)
+#define GAME		GET_SINGLE(Engine::GameInstance)

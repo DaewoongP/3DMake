@@ -48,4 +48,4 @@ private:
 
 END
 
-#define INPUT		GET_SINGLE(InputDevice)
+#define INPUT		GET_SINGLE(Engine::InputDevice)

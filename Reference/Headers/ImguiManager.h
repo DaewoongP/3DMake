@@ -26,4 +26,4 @@ private:
 
 END
 
-#define GUI		GET_SINGLE(ImguiManager)
+#define GUI		GET_SINGLE(Engine::ImguiManager)

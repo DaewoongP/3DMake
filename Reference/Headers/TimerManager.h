@@ -27,4 +27,4 @@ private:
 
 END
 
-#define TIMER		GET_SINGLE(TimerManager)
+#define TIMER		GET_SINGLE(Engine::TimerManager)
