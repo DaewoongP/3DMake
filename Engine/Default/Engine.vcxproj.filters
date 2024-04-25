@@ -93,33 +93,32 @@
     <ClInclude Include="..\Public\Factory.h">
       <Filter>02. Design</Filter>
     </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imconfig.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imgui.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imgui_impl_dx11.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imgui_impl_win32.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imgui_internal.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imstb_rectpack.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imstb_textedit.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Public\Imgui\imstb_truetype.h">
-      <Filter>01. Utility\97. Imgui\Inc</Filter>
-    </ClInclude>
     <ClInclude Include="..\public\ImguiManager.h">
       <Filter>01. Utility\97. Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\imconfig.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui_impl_dx11.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui_impl_win32.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui_internal.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imstb_rectpack.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imstb_textedit.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imstb_truetype.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\imgui.h">
+      <Filter>01. Utility\97. Imgui\Inc</Filter>
     <ClInclude Include="..\public\Component.h">
       <Filter>01. Utility\01. Component</Filter>
     </ClInclude>
