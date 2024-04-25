@@ -18,14 +18,11 @@ public:
 public: /* GraphicDevice */
 	HRESULT RenderBegin(_float4 _clearColor);
 	HRESULT RenderEnd();
-	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
-	HRESULT ClearDepthStencilView();
-	HRESULT Present();
 
 public: /* TimerManager */
-	_float		GetTimer(const std::wstring& timerTag);
-	void		SetTimer(const std::wstring& timerTag);
-	HRESULT		AddTimer(const std::wstring& timerTag);
+	_float		GetTimer(const std::wstring& _timerTag);
+	void		SetTimer(const std::wstring& _timerTag);
+	HRESULT		AddTimer(const std::wstring& _timerTag);
 
 public: /* InputDevice */
 	_bool		GetDIKeyState(_ubyte _keyID, InputDevice::KEYSTATE _state = InputDevice::KEY_PRESSING);
@@ -37,8 +34,8 @@ public: /* FontManager */
 	HRESULT RenderFont(const std::wstring& _fontTag, const std::wstring& _text, const _float2& _position, _fvector _color = XMVectorSet(1.f, 1.f, 1.f, 1.f), _float _rotation = 0.f, const _float2& _origin = _float2(0.f, 0.f), _float _scale = 1.f);
 
 public: /* ImguiManager */
-	void Imgui_Begin();
-	void Imgui_End();
+	void ImguiBegin();
+	void ImguiEnd();
 
 public:
 	static void Release();

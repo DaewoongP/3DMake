@@ -21,8 +21,10 @@
 
 #ifdef	ENGINE_EXPORTS
 #define ENGINE_DLL		_declspec(dllexport)
+#define IMGUI_API	__declspec(dllexport)
 #else
 #define ENGINE_DLL		_declspec(dllimport)
+#define IMGUI_API	__declspec(dllimport)
 #endif
 
 

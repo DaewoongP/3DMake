@@ -7,8 +7,8 @@ BEGIN(Client)
 class MainApp
 {
 public:
-	MainApp();
-	~MainApp();
+	MainApp() = default;
+	~MainApp() = default;
 
 public:
 	HRESULT Initialize();
@@ -18,13 +18,6 @@ public:
 private:
 	ComPtr<ID3D11Device>		mDevice;
 	ComPtr<ID3D11DeviceContext>	mDeviceContext;
-
-#ifdef _DEBUG
-private:
-	Engine::_float	mTimeAcc;
-	std::wstring	mFPS;
-	Engine::_uint	mNumRenders;
-#endif
 };
 
 END

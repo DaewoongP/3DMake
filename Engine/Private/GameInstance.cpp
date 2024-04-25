@@ -21,25 +21,22 @@ void GameInstance::Tick(_float _timeDelta)
 {
     INPUT->Tick();
     
-    GRAPHIC->Render_Begin(_float4(0.f, 0.f, 1.f, 0.f));
+    GRAPHIC->RenderBegin(_float4(0.f, 0.f, 1.f, 0.f));
     GUI->Begin();
 
     GUI->End();
-    GRAPHIC->Render_End();
+    GRAPHIC->RenderEnd();
 }
 
 #pragma region GraphicDevice
-HRESULT GameInstance::RenderBegin(_float4 _clearColor) { return GRAPHIC->Render_Begin(_clearColor); }
-HRESULT GameInstance::RenderEnd() { return GRAPHIC->Render_End(); }
-//HRESULT GameInstance::ClearBackBuffer(_float4 _clearColor) { return GRAPHIC->ClearBackBuffer(_clearColor); }
-//HRESULT GameInstance::ClearDepthStencilView() { return GRAPHIC->ClearDepthStencilView(); }
-//HRESULT GameInstance::Present() { return GRAPHIC->Present(); }
+HRESULT GameInstance::RenderBegin(_float4 _clearColor) { return GRAPHIC->RenderBegin(_clearColor); }
+HRESULT GameInstance::RenderEnd() { return GRAPHIC->RenderEnd(); }
 #pragma endregion
 
 #pragma region TimerManager
-_float GameInstance::GetTimer(const std::wstring& timerTag) { return TIMER->GetTimer(timerTag); }
-void GameInstance::SetTimer(const std::wstring& timerTag) { return TIMER->SetTimer(timerTag); }
-HRESULT GameInstance::AddTimer(const std::wstring& timerTag) { return TIMER->AddTimer(timerTag); }
+_float GameInstance::GetTimer(const std::wstring& _timerTag) { return TIMER->GetTimer(_timerTag); }
+void GameInstance::SetTimer(const std::wstring& _timerTag) { return TIMER->SetTimer(_timerTag); }
+HRESULT GameInstance::AddTimer(const std::wstring& _timerTag) { return TIMER->AddTimer(_timerTag); }
 #pragma endregion
 
 #pragma region InputDevice
@@ -54,8 +51,8 @@ HRESULT GameInstance::RenderFont(const std::wstring& _fontTag, const std::wstrin
 #pragma endregion
 
 #pragma region ImguiManager
-void GameInstance::Imgui_Begin() { GUI->Begin(); }
-void GameInstance::Imgui_End() { GUI->End(); }
+void GameInstance::ImguiBegin() { GUI->Begin(); }
+void GameInstance::ImguiEnd() { GUI->End(); }
 #pragma endregion
 
 void GameInstance::Release()

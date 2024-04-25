@@ -25,6 +25,12 @@
 #define ENGINE_DLL		_declspec(dllimport)
 #endif
 
+//#ifndef IMGUI_API
+//#define IMGUI_API	__declspec(dllexport)
+//#endif
+//#ifndef IMGUI_IMPL_API
+//#define IMGUI_IMPL_API	IMGUI_API
+//#endif
 
 
 #define NULL_RETURN( _ptr, _return)	\

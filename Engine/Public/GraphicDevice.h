@@ -20,8 +20,8 @@ private:
 	HRESULT Present();
 
 public:
-	HRESULT Render_Begin(_float4 _clearColor);
-	HRESULT Render_End();
+	HRESULT RenderBegin(_float4 _clearColor);
+	HRESULT RenderEnd();
 
 private:
 	ComPtr<ID3D11Device>				mDevice;

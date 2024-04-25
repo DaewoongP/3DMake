@@ -70,18 +70,19 @@ HRESULT Engine::GraphicDevice::Present()
 	return S_OK;
 }
 
-HRESULT GraphicDevice::Render_Begin(_float4 _clearColor)
+HRESULT GraphicDevice::RenderBegin(_float4 _clearColor)
 {
 	mDeviceContext->OMSetRenderTargets(1, mBackBufferRTV.GetAddressOf(), mDepthStencilView.Get());
 	ClearBackBuffer(_clearColor);
 	ClearDepthStencilView();
-	//mDeviceContext->RSSetViewports(1, &_viewport);
+
 	return S_OK;
 }
 
-HRESULT GraphicDevice::Render_End()
+HRESULT GraphicDevice::RenderEnd()
 {
 	Present();
+
 	return S_OK;
 }
 
