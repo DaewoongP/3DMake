@@ -4,6 +4,7 @@
 #include "FontManager.h"
 #include "ImguiManager.h"
 #include "LevelManager.h"
+#include "ComponentManager.h"
 
 USING(Engine)
 
@@ -17,7 +18,7 @@ HRESULT GameInstance::Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDe
     FAILED_RETURN(GRAPHIC->Initialize(_graphicDesc.hWnd, _graphicDesc.WinMode, _graphicDesc.ViewportSizeX, _graphicDesc.ViewportSizeY, _device, _deviceContext), E_FAIL);
     FAILED_RETURN(INPUT->Initialize(_hInst, _graphicDesc.hWnd), E_FAIL);
     FAILED_RETURN(GUI->Initialize(_graphicDesc.hWnd, _device, _deviceContext), E_FAIL);
-
+    FAILED_RETURN(COM->Initialize(3 /*<---------------- 3은 임시값 푸쉬 후 정상적인 레벨개수 받아주기 */), E_FAIL);
     return S_OK;
 }
 
@@ -71,10 +72,18 @@ HRESULT GameInstance::OpenLevel(_uint _levelIndex, std::unique_ptr<Level>&& _new
 
     return LEVEL->OpenLevel(_levelIndex, std::move(_newLevel));
 }
+
+#pragma endregion
+
+#pragma region ComponentManager
+HRESULT GameInstance::AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<Component> _prototype) { return COM->AddPrototype(_levelIndex, _prototypeTag, _prototype); }
+std::shared_ptr<Component> GameInstance::CloneComponent(_uint _levelIndex, const std::wstring& _prototypeTag, void* _arg) { return COM->CloneComponent(_levelIndex, _prototypeTag, _arg); }
 #pragma endregion
 
 HRESULT GameInstance::ClearLevelResources(_uint _preLevelIndex)
 {
+    COM->ClearLevelResources(_preLevelIndex);
+
     return S_OK;
 }
 
@@ -93,4 +102,6 @@ void GameInstance::Release()
     GUI->DestroyInstance();
 
     LEVEL->DestroyInstance();
+
+    COM->DestroyInstance();
 }

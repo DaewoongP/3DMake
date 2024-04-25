@@ -6,11 +6,25 @@ BEGIN(Engine)
 class ComponentManager
 {
 	DECLARE_SINGLETON(ComponentManager)
-public:
 	//HRESULT Initialize();
 
+public:
+	ComponentManager();
+	~ComponentManager();
+
+	HRESULT Initialize(_uint _numLevels);
+	HRESULT AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<Component> _prototype);
+	std::shared_ptr<Component> CloneComponent(_uint _levelIndex, const std::wstring& _prototypeTag, void* pArg);
+	void ClearLevelResources(_uint _levelIndex);
+
 private:
-	_umap<std::wstring, Component>	mComponents;
+	std::shared_ptr<Component> Find_Prototype(_uint _levelIndex, const std::wstring& _prototypeTag);
+
+private:
+	typedef std::vector<_umap<std::wstring, std::shared_ptr<Component>>>	PROTOTYPES;
+	PROTOTYPES mPrototypes;
 };
 
 END
+
+#define COM		GET_SINGLE(ComponentManager)

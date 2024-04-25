@@ -16,10 +16,6 @@ public:
 	void End();
 
 private:
-	bool show_demo_window = true;
-	bool show_another_window = false;
-	float clear_color[4] = {0.f, 0.f, 0.f, 0.f};
-
 	ComPtr<ID3D11Device> mDevice;
 	ComPtr<ID3D11DeviceContext> mDeviceContext;
 };
