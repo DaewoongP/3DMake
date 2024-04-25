@@ -50,13 +50,7 @@
 #include <memory>
 #include <filesystem>
 
-// ImGUI
-//#ifndef IMGUI_API
-//#define IMGUI_API	__declspec(dllexport)
-//#endif
-//#ifndef IMGUI_IMPL_API
-//#define IMGUI_IMPL_API	IMGUI_API
-//#endif
+
 #include "imgui.h"
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
@@ -69,8 +63,6 @@ using namespace DirectX;
 #include "Engine_Typedef.h"
 #include "Engine_Macro.h"
 #include "Engine_Struct.h"
-
-
 
 #include "Factory.h"
 

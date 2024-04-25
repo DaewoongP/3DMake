@@ -4,11 +4,11 @@
     <Filter Include="98. Default">
       <UniqueIdentifier>{02ff42b6-bb95-4f3e-944c-1043eeca69bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="99. Headers">
-      <UniqueIdentifier>{7bcda3f9-16df-489e-8d4c-4745cfca7637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="00. MainApp">
       <UniqueIdentifier>{2ead762d-8be8-41f9-a5c5-8c07d0dacf90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Headers">
+      <UniqueIdentifier>{7bcda3f9-16df-489e-8d4c-4745cfca7637}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
