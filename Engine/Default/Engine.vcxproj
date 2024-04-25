@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\public\Component.h" />
+    <ClInclude Include="..\public\ComponentManager.h" />
+    <ClInclude Include="..\public\Composite.h" />
     <ClInclude Include="..\Public\Engine_Defines.h" />
     <ClInclude Include="..\Public\Engine_Macro.h" />
     <ClInclude Include="..\Public\Engine_Struct.h" />
@@ -38,10 +41,15 @@
     <ClInclude Include="..\Public\imstb_textedit.h" />
     <ClInclude Include="..\Public\imstb_truetype.h" />
     <ClInclude Include="..\public\InputDevice.h" />
+    <ClInclude Include="..\public\Level.h" />
+    <ClInclude Include="..\public\LevelManager.h" />
     <ClInclude Include="..\public\Timer.h" />
     <ClInclude Include="..\public\TimerManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\private\Component.cpp" />
+    <ClCompile Include="..\private\ComponentManager.cpp" />
+    <ClCompile Include="..\private\Composite.cpp" />
     <ClCompile Include="..\private\CustomFont.cpp" />
     <ClCompile Include="..\private\FontManager.cpp" />
     <ClCompile Include="..\private\GameInstance.cpp" />
@@ -76,6 +84,8 @@
       <IncludeInUnityFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</IncludeInUnityFile>
     </ClCompile>
     <ClCompile Include="..\private\InputDevice.cpp" />
+    <ClCompile Include="..\private\Level.cpp" />
+    <ClCompile Include="..\private\LevelManager.cpp" />
     <ClCompile Include="..\private\Timer.cpp" />
     <ClCompile Include="..\private\TimerManager.cpp" />
   </ItemGroup>

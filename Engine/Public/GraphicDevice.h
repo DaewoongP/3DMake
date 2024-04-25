@@ -10,16 +10,14 @@ public:
 	GraphicDevice() = default;
 	~GraphicDevice() = default;
 
+public:
+	ComPtr<ID3D11Device> GetDevice() const { return mDevice; }
+	ComPtr<ID3D11DeviceContext> GetDeviceContext() const { return mDeviceContext; }
+
+public:
 	HRESULT Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _winMode,
 		_uint _winCX, _uint _winCY, _Inout_ ComPtr<ID3D11Device>& _device,
 		_Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext);
-
-private:
-	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
-	HRESULT ClearDepthStencilView();
-	HRESULT Present();
-
-public:
 	HRESULT RenderBegin(_float4 _clearColor);
 	HRESULT RenderEnd();
 
@@ -29,6 +27,11 @@ private:
 	ComPtr<IDXGISwapChain>				mSwapChain;
 	ComPtr<ID3D11RenderTargetView>		mBackBufferRTV;
 	ComPtr<ID3D11DepthStencilView>		mDepthStencilView;
+
+private:
+	HRESULT ClearBackBuffer(Engine::_float4 _clearColor);
+	HRESULT ClearDepthStencilView();
+	HRESULT Present();
 
 private:
 	HRESULT ReadySwapChain(HWND hWnd, GRAPHICDESC::WINMODE _winMode, _uint _winCX, _uint _winCY);

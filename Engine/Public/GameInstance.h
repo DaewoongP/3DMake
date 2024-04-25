@@ -11,6 +11,10 @@ public:
 	GameInstance() = default;
 	~GameInstance() = default;
 
+public: /* Device & Context */
+	ComPtr<ID3D11Device> GetDevice() const;
+	ComPtr<ID3D11DeviceContext> GetDeviceContext() const;
+
 public:
 	HRESULT Initialize(HINSTANCE _hInst, const GRAPHICDESC& _graphicDesc, _Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext);
 	void Tick(_float _timeDelta);

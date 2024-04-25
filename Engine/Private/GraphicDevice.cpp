@@ -43,6 +43,22 @@ HRESULT Engine::GraphicDevice::Initialize(HWND _hWnd, GRAPHICDESC::WINMODE _winM
 	return S_OK;
 }
 
+HRESULT GraphicDevice::RenderBegin(_float4 _clearColor)
+{
+	mDeviceContext->OMSetRenderTargets(1, mBackBufferRTV.GetAddressOf(), mDepthStencilView.Get());
+	ClearBackBuffer(_clearColor);
+	ClearDepthStencilView();
+
+	return S_OK;
+}
+
+HRESULT GraphicDevice::RenderEnd()
+{
+	Present();
+
+	return S_OK;
+}
+
 HRESULT Engine::GraphicDevice::ClearBackBuffer(_float4 _clearColor)
 {
 	NULL_CHECK_RETURN_MSG(mDeviceContext, E_FAIL, TEXT("DeviceContext NULL"));
@@ -66,22 +82,6 @@ HRESULT Engine::GraphicDevice::Present()
 	NULL_CHECK_RETURN_MSG(mSwapChain, E_FAIL, TEXT("SwapChain NULL"));
 
 	FAILED_CHECK_RETURN_MSG(mSwapChain->Present(0, 0), E_FAIL, TEXT("Engine::GraphicDevice::Present\n Failed Present"));
-	
-	return S_OK;
-}
-
-HRESULT GraphicDevice::RenderBegin(_float4 _clearColor)
-{
-	mDeviceContext->OMSetRenderTargets(1, mBackBufferRTV.GetAddressOf(), mDepthStencilView.Get());
-	ClearBackBuffer(_clearColor);
-	ClearDepthStencilView();
-
-	return S_OK;
-}
-
-HRESULT GraphicDevice::RenderEnd()
-{
-	Present();
 
 	return S_OK;
 }
