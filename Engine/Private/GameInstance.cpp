@@ -4,7 +4,6 @@
 #include "FontManager.h"
 #include "ImguiManager.h"
 #include "LevelManager.h"
-#include "ComponentManager.h"
 
 USING(Engine)
 
@@ -79,12 +78,15 @@ HRESULT GameInstance::OpenLevel(_uint _levelIndex, std::unique_ptr<Level>&& _new
 
     return LEVEL->OpenLevel(_levelIndex, std::move(_newLevel));
 }
-
 #pragma endregion
 
 #pragma region ComponentManager
 HRESULT GameInstance::AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<Component> _prototype) { return COM->AddPrototype(_levelIndex, _prototypeTag, _prototype); }
 std::shared_ptr<Component> GameInstance::CloneComponent(_uint _levelIndex, const std::wstring& _prototypeTag, void* _arg) { return COM->CloneComponent(_levelIndex, _prototypeTag, _arg); }
+#pragma endregion
+
+#pragma region RenderManager
+void GameInstance::AddRenderGroup(RenderManager::RenderType _renderType, std::shared_ptr<Component> _component) { return RENDER->AddRenderGroup(_renderType, _component); }
 #pragma endregion
 
 HRESULT GameInstance::ClearLevelResources(_uint _preLevelIndex)

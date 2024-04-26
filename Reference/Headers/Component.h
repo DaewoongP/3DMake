@@ -14,7 +14,6 @@ public:
 	_bool IsCloned() { return mCloned; }
 
 public:
-	virtual HRESULT InitializePrototype() { return S_OK; }
 	virtual HRESULT Initialize(void* _arg) { return S_OK; }
 	virtual void Tick(_float _timeDelta) {}
 	virtual void LateTick(_float _timeDelta) {}

@@ -33,7 +33,7 @@ HRESULT TimerManager::AddTimer(const std::wstring& _timerTag)
 		return E_FAIL;
 	}
 	
-	mTimers.emplace(_timerTag, Factory<Timer>::CreateShared());
+	mTimers.emplace(_timerTag, Timer::Create());
 
 	return S_OK;
 }

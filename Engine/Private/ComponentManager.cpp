@@ -3,14 +3,6 @@ USING(Engine)
 
 IMPLEMENT_SINGLETON(ComponentManager)
 
-ComponentManager::ComponentManager()
-{
-}
-
-ComponentManager::~ComponentManager()
-{
-}
-
 HRESULT ComponentManager::Initialize(_uint _numLevels)
 {
     mPrototypes.resize(_numLevels);

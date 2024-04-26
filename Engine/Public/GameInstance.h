@@ -1,6 +1,7 @@
 #pragma once
 #include "InputDevice.h"
 #include "RenderManager.h"
+#include "ComponentManager.h"
 
 BEGIN(Engine)
 

@@ -14,6 +14,9 @@ public:
 	virtual HRESULT Initialize() override;
 	virtual void Tick(_float _timeDelta) override;
 
+private:
+	std::shared_ptr<class TestObject> test;
+
 public:
 	static std::unique_ptr<LevelPlay1> Create();
 };

@@ -11,7 +11,7 @@ public:
 	virtual ~RectBuffer() = default;
 
 public:
-	virtual HRESULT InitializePrototype() override;
+	HRESULT InitializePrototype();
 
 public:
 	static std::shared_ptr<RectBuffer> Create();

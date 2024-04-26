@@ -46,6 +46,7 @@
     <ClInclude Include="..\public\LevelManager.h" />
     <ClInclude Include="..\public\RectBuffer.h" />
     <ClInclude Include="..\public\RenderManager.h" />
+    <ClInclude Include="..\public\Shader.h" />
     <ClInclude Include="..\public\Timer.h" />
     <ClInclude Include="..\public\TimerManager.h" />
     <ClInclude Include="..\public\VIBuffer.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="..\private\LevelManager.cpp" />
     <ClCompile Include="..\private\RectBuffer.cpp" />
     <ClCompile Include="..\private\RenderManager.cpp" />
+    <ClCompile Include="..\private\Shader.cpp" />
     <ClCompile Include="..\private\Timer.cpp" />
     <ClCompile Include="..\private\TimerManager.cpp" />
     <ClCompile Include="..\private\VIBuffer.cpp" />

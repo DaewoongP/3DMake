@@ -9,7 +9,7 @@ public:
 	_float	GetTimeDelta() const { return mTimeDelta; }
 
 public:
-	HRESULT		InitializePrototype();
+	HRESULT		Initialize();
 	void		Tick();
 
 private:
@@ -19,6 +19,9 @@ private:
 	LARGE_INTEGER			mCpuTick;
 
 	_float					mTimeDelta;
+
+public:
+	static std::shared_ptr<Timer> Create();
 };
 
 END
