@@ -10,7 +10,7 @@ public:
 	Loader() = default;
 	~Loader();
 public:
-	_bool GetFinished() const { return mFinished; }
+	_bool IsFinished() const { return mFinished; }
 
 public:
 	HRESULT Initialize(LevelType _levelType);
@@ -28,6 +28,9 @@ private:
 	LevelType			mNextLevelType;
 	_tchar				mLoading[MAX_PATH];
 	_bool				mFinished;
+
+public:
+	static std::unique_ptr<Loader> Create(LevelType _levelType);
 };
 
 END

@@ -17,8 +17,10 @@ HRESULT GameInstance::Initialize(HINSTANCE _hInst, _uint _numLevels, const GRAPH
 {
     FAILED_RETURN(GRAPHIC->Initialize(_graphicDesc.hWnd, _graphicDesc.WinMode, _graphicDesc.ViewportSizeX, _graphicDesc.ViewportSizeY, _device, _deviceContext), E_FAIL);
     FAILED_RETURN(INPUT->Initialize(_hInst, _graphicDesc.hWnd), E_FAIL);
+    FAILED_RETURN(RENDER->Initialize(), E_FAIL);
     FAILED_RETURN(GUI->Initialize(_graphicDesc.hWnd, _device, _deviceContext), E_FAIL);
     FAILED_RETURN(COM->Initialize(_numLevels), E_FAIL);
+
     return S_OK;
 }
 
@@ -29,12 +31,17 @@ void GameInstance::Tick(_float _timeDelta)
     LEVEL->Tick(_timeDelta);
 
     TIMER->Tick(_timeDelta);
+}
 
-    GRAPHIC->RenderBegin(_float4(0.f, 0.f, 1.f, 0.f));
+HRESULT GameInstance::Render()
+{
+    FAILED_RETURN(GRAPHIC->RenderBegin(_float4(0.f, 0.f, 1.f, 0.f)), E_FAIL);
     GUI->Begin();
-
+    FAILED_RETURN(RENDER->Draw(), E_FAIL);
     GUI->End();
-    GRAPHIC->RenderEnd();
+    FAILED_RETURN(GRAPHIC->RenderEnd(), E_FAIL);
+
+    return S_OK;
 }
 
 #pragma region GraphicDevice
@@ -92,6 +99,8 @@ void GameInstance::Release()
     GAME->DestroyInstance();
 
     GRAPHIC->DestroyInstance();
+
+    RENDER->DestroyInstance();
 
     TIMER->DestroyInstance();
 

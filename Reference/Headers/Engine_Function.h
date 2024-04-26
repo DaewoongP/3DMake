@@ -25,3 +25,44 @@ public:
 #endif // _DEBUG
 	}
 };
+
+class Utility
+{
+public:
+	template <typename T>
+	static void SafeDelete(T& pointer)
+	{
+		if (nullptr != pointer)
+		{
+			delete pointer;
+			pointer = nullptr;
+		}
+	}
+
+	template <typename T>
+	static void SafeDeleteArray(T& pointer)
+	{
+		if (nullptr != pointer)
+		{
+			delete[] pointer;
+			pointer = nullptr;
+		}
+	}
+
+	class TagFinder
+	{
+	public:
+		explicit TagFinder(const wchar_t* pTag) : m_pTargetTag(pTag) { }
+		~TagFinder() = default;
+
+	public:
+		template<typename T>
+		bool operator()(const T& pair)
+		{
+			return 0 == lstrcmpW(m_pTargetTag, pair.first);
+		}
+
+	private:
+		const wchar_t* m_pTargetTag;
+	};
+};

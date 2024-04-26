@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine_Defines.h"
 #include "InputDevice.h"
+#include "RenderManager.h"
 
 BEGIN(Engine)
 
@@ -18,6 +18,7 @@ public: /* Device & Context */
 public:
 	HRESULT Initialize(HINSTANCE _hInst, _uint _numLevels, const GRAPHICDESC& _graphicDesc, _Inout_ ComPtr<ID3D11Device>& _device, _Inout_ ComPtr<ID3D11DeviceContext>& _deviceContext);
 	void Tick(_float _timeDelta);
+	HRESULT Render();
 
 public: /* GraphicDevice */
 	HRESULT RenderBegin(_float4 _clearColor);
@@ -50,6 +51,9 @@ public: /* LevelManager */
 public: /* ComponentManager */
 	HRESULT AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<class Component> _prototype);
 	std::shared_ptr<class Component> CloneComponent(_uint _levelIndex, const std::wstring& _prototypeTag, void* _arg);
+
+public: /* RenderManager */
+	void AddRenderGroup(RenderManager::RenderType _renderType, std::shared_ptr<Component> _component);
 
 private:
 	HRESULT ClearLevelResources(_uint _preLevelIndex);

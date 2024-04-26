@@ -91,7 +91,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
     // Create MainApp
-    std::unique_ptr<MainApp> mainApp = Factory<MainApp>::CreateUnique();
+    std::unique_ptr<MainApp> mainApp = MainApp::Create();
     _float timeAcc = 0.f;
 
     FAILED_RETURN(GAME->AddTimer(TEXT("Timer_Default")), FALSE);
@@ -121,6 +121,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             GAME->TickTimeDelta(TEXT("Timer_60"));
 
             mainApp->Tick(GAME->GetTimeDelta(TEXT("Timer_60")));
+            mainApp->Render();
 
             timeAcc = 0.f;
         }

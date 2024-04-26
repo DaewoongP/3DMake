@@ -44,8 +44,11 @@
     <ClInclude Include="..\public\InputDevice.h" />
     <ClInclude Include="..\public\Level.h" />
     <ClInclude Include="..\public\LevelManager.h" />
+    <ClInclude Include="..\public\RectBuffer.h" />
+    <ClInclude Include="..\public\RenderManager.h" />
     <ClInclude Include="..\public\Timer.h" />
     <ClInclude Include="..\public\TimerManager.h" />
+    <ClInclude Include="..\public\VIBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\Component.cpp" />
@@ -87,8 +90,12 @@
     <ClCompile Include="..\private\InputDevice.cpp" />
     <ClCompile Include="..\private\Level.cpp" />
     <ClCompile Include="..\private\LevelManager.cpp" />
+    <ClCompile Include="..\private\RectBuffer.cpp" />
+    <ClCompile Include="..\private\RenderManager.cpp" />
     <ClCompile Include="..\private\Timer.cpp" />
     <ClCompile Include="..\private\TimerManager.cpp" />
+    <ClCompile Include="..\private\VIBuffer.cpp" />
+    <ClCompile Include="..\Public\Engine_Struct.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

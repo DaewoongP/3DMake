@@ -2,7 +2,7 @@
 
 USING(Engine)
 
-HRESULT Timer::Initialize()
+HRESULT Timer::InitializePrototype()
 {
 	QueryPerformanceCounter(&mFrameTime);
 	QueryPerformanceCounter(&mLastTime);

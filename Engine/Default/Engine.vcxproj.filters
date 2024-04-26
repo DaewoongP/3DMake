@@ -46,14 +46,29 @@
     <Filter Include="01. Utility\01. Component\01. Composite">
       <UniqueIdentifier>{50e5d1a5-f4f1-4fda-bda0-2a8d1ca22532}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Utility\03. Font">
-      <UniqueIdentifier>{77638309-ee61-4065-a1b2-728a86479100}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Utility\02. Level">
       <UniqueIdentifier>{ce744fc5-4fb6-489d-bff2-228b6868e021}</UniqueIdentifier>
     </Filter>
     <Filter Include="01. Utility\02. Level\Manager">
       <UniqueIdentifier>{271179f8-1cec-4d22-9b1f-56018b12c02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\04. Font">
+      <UniqueIdentifier>{77638309-ee61-4065-a1b2-728a86479100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\03. Rendering">
+      <UniqueIdentifier>{d40d5c27-e900-45ec-b5f6-2f9d86bb28f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\03. Rendering\00. Manager">
+      <UniqueIdentifier>{5f7fd296-7d9d-4c93-b390-c4ce8e68b7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\01. Component\02. Buffer">
+      <UniqueIdentifier>{0beda64b-31d6-42f5-8406-40b83be5afc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\01. Component\02. Buffer\00. VIBuffer">
+      <UniqueIdentifier>{69c76279-68b4-43d1-9b59-b3c2ac12ba03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\01. Component\02. Buffer\01. Rect">
+      <UniqueIdentifier>{1c00c217-354a-4dda-a252-7ac2abb24445}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,10 +100,10 @@
       <Filter>00. System\00. Device\01. Input</Filter>
     </ClInclude>
     <ClInclude Include="..\public\FontManager.h">
-      <Filter>01. Utility\03. Font</Filter>
+      <Filter>01. Utility\04. Font</Filter>
     </ClInclude>
     <ClInclude Include="..\public\CustomFont.h">
-      <Filter>01. Utility\03. Font</Filter>
+      <Filter>01. Utility\04. Font</Filter>
     </ClInclude>
     <ClInclude Include="..\Public\Factory.h">
       <Filter>02. Design</Filter>
@@ -138,6 +153,15 @@
     <ClInclude Include="..\Public\Engine_Function.h">
       <Filter>99. Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\RenderManager.h">
+      <Filter>01. Utility\03. Rendering\00. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\VIBuffer.h">
+      <Filter>01. Utility\01. Component\02. Buffer\00. VIBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\RectBuffer.h">
+      <Filter>01. Utility\01. Component\02. Buffer\01. Rect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -156,10 +180,10 @@
       <Filter>00. System\00. Device\01. Input</Filter>
     </ClCompile>
     <ClCompile Include="..\private\CustomFont.cpp">
-      <Filter>01. Utility\03. Font</Filter>
+      <Filter>01. Utility\04. Font</Filter>
     </ClCompile>
     <ClCompile Include="..\private\FontManager.cpp">
-      <Filter>01. Utility\03. Font</Filter>
+      <Filter>01. Utility\04. Font</Filter>
     </ClCompile>
     <ClCompile Include="..\Private\Imgui\imgui.cpp">
       <Filter>01. Utility\97. Imgui\Inc</Filter>
@@ -199,6 +223,18 @@
     </ClCompile>
     <ClCompile Include="..\private\LevelManager.cpp">
       <Filter>01. Utility\02. Level\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\RenderManager.cpp">
+      <Filter>01. Utility\03. Rendering\00. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\VIBuffer.cpp">
+      <Filter>01. Utility\01. Component\02. Buffer\00. VIBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\RectBuffer.cpp">
+      <Filter>01. Utility\01. Component\02. Buffer\01. Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Public\Engine_Struct.cpp">
+      <Filter>99. Headers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

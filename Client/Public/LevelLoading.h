@@ -17,6 +17,9 @@ public:
 private:
 	std::unique_ptr<Loader>	mLoader;
 	LevelType				mNextLevelType;
+
+public:
+	static std::unique_ptr<LevelLoading> Create(LevelType _nextLevelType);
 };
 
 END

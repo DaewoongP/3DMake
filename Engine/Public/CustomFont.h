@@ -3,7 +3,7 @@
 
 BEGIN(Engine)
 
-class CustomFont final
+class CustomFont
 {
 public:
 	HRESULT Initialize(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontFilePath);
@@ -14,6 +14,9 @@ private:
 	ComPtr<ID3D11DeviceContext>		mDeviceContext;
 	std::unique_ptr<SpriteBatch>	mBatch;
 	std::unique_ptr<SpriteFont>		mFont;
+
+public:
+	static std::shared_ptr<CustomFont> Create(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontFilePath);
 };
 
 END

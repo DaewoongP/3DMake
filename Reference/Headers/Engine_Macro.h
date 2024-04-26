@@ -25,14 +25,6 @@
 #define ENGINE_DLL		_declspec(dllimport)
 #endif
 
-//#ifndef IMGUI_API
-//#define IMGUI_API	__declspec(dllexport)
-//#endif
-//#ifndef IMGUI_IMPL_API
-//#define IMGUI_IMPL_API	IMGUI_API
-//#endif
-
-
 #define NULL_RETURN( _ptr, _return)	\
 	{if( _ptr == 0){return _return;}}
 
@@ -64,16 +56,6 @@
 #define FAILED_CHECK_RETURN_MSG( _hr, _return, _message)	if( ((HRESULT)(_hr)) < 0 )	\
 	{ MessageBoxW(nullptr, _message, L"System Message",MB_OK); __debugbreak();return _return;}
 
-
-
-//#define DECLARE_SINGLETON(classname)				\
-//public:												\
-//    static classname* GetInstance()					\
-//    {												\
-//        static classname sInstance;					\
-//        return &sInstance;							\
-//    }
-
 #define NO_COPY(CLASSNAME)										\
 		private:												\
 		CLASSNAME(const CLASSNAME&) = delete;					\
@@ -82,24 +64,24 @@
 #define DECLARE_SINGLETON(CLASSNAME)							\
 		NO_COPY(CLASSNAME)										\
 		private:												\
-		static CLASSNAME*	m_pInstance;						\
+		static CLASSNAME*	mInstance;							\
 		public:													\
 		static CLASSNAME*	GetInstance( void );				\
 		static void DestroyInstance( void );					\
 
 #define IMPLEMENT_SINGLETON(CLASSNAME)							\
-		CLASSNAME*	CLASSNAME::m_pInstance = nullptr;			\
+		CLASSNAME*	CLASSNAME::mInstance = nullptr;				\
 		CLASSNAME*	CLASSNAME::GetInstance( void )	{			\
-			if(nullptr == m_pInstance) {						\
-				m_pInstance = new CLASSNAME;					\
+			if(nullptr == mInstance) {							\
+				mInstance = new CLASSNAME;						\
 			}													\
-			return m_pInstance;									\
+			return mInstance;									\
 		}														\
-		void CLASSNAME::DestroyInstance( void ) {		\
-			if(nullptr != m_pInstance)							\
+		void CLASSNAME::DestroyInstance( void ) {				\
+			if(nullptr != mInstance)							\
 			{													\
-				delete m_pInstance;								\
+				delete mInstance;								\
 			}													\
 		}														\
 
-#define GET_SINGLE(classname)    classname::GetInstance()
+#define GET_SINGLE(CLASSNAME)    CLASSNAME::GetInstance()

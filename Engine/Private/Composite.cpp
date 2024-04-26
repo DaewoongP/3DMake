@@ -12,22 +12,9 @@ Composite::Composite(const Composite& rhs)
 {
 }
 
-Composite::~Composite()
+std::shared_ptr<Component> Composite::GetComponent(const std::wstring& _key)
 {
-}
-
-HRESULT Composite::Initialize_Prototype()
-{
-	__super::Initialize_Prototype();
-
-	return S_OK;
-}
-
-HRESULT Composite::Initialize(void* _arg)
-{
-	__super::Initialize(_arg);
-
-	return S_OK;
+	return FindComponent(_key);
 }
 
 void Composite::Tick(_float _timeDelta)
@@ -36,6 +23,8 @@ void Composite::Tick(_float _timeDelta)
 	{
 		component.second->Tick(_timeDelta);
 	}
+
+	__super::Tick(_timeDelta);
 }
 
 void Composite::LateTick(_float _timeDelta)
@@ -44,8 +33,9 @@ void Composite::LateTick(_float _timeDelta)
 	{
 		component.second->LateTick(_timeDelta);
 	}
-}
 
+	__super::LateTick(_timeDelta);
+}
 
 std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototypeKey, const std::wstring& _componentKey, void* _arg, _int _levelIndex)
 {
@@ -68,14 +58,9 @@ std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototyp
 	return component;
 }
 
-std::shared_ptr<Component> Composite::GetComponent(const std::wstring& _key)
-{
-	return FindComponent(_key);
-}
-
 HRESULT Composite::RemoveComponent(const std::wstring& _key)
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 std::shared_ptr<Component> Composite::FindComponent(const std::wstring& _key)

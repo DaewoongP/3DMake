@@ -9,7 +9,7 @@ public:
 	_float	GetTimeDelta() const { return mTimeDelta; }
 
 public:
-	HRESULT		Initialize();
+	HRESULT		InitializePrototype();
 	void		Tick();
 
 private:
