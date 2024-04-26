@@ -11,7 +11,7 @@ HRESULT RenderManager::Initialize()
 
 void RenderManager::AddRenderGroup(RenderType _renderType, std::shared_ptr<Component> _component)
 {
-	NULL_CHECK_RETURN_MSG(_component.get(), , TEXT("RenderManager::AddRenderGroup\nComponent is NULL"));
+	NULL_CHECK_RETURN_MSG(_component.get(), , TEXT("Component is NULL"));
 	
 	mRenderComponents[static_cast<_uint>(_renderType)].emplace_back(_component);
 }

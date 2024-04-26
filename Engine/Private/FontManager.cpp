@@ -9,7 +9,7 @@ HRESULT FontManager::AddFont(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceCo
 {
 	if (nullptr != FindFont(_fontTag))
 	{
-		MSG_BOX("FontManager::AddFont\nAlready Have FontTag");
+		DISPLAY_ERROR(TEXT("Already Have FontTag"));
 		__debugbreak();
 		return E_FAIL;
 	}
@@ -23,7 +23,7 @@ HRESULT FontManager::Render(const std::wstring& _fontTag, const std::wstring& _t
 {
 	auto	font = FindFont(_fontTag);
 
-	NULL_CHECK_RETURN_MSG(font, E_FAIL, TEXT("FontManager::Render\n Failed Find Custom Font"));
+	NULL_CHECK_RETURN_MSG(font, E_FAIL, TEXT("Failed Find Custom Font"));
 
 	return font->Render(_text, _position, _color, _rotation, _origin, _scale);
 }

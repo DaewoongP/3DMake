@@ -92,13 +92,13 @@ HRESULT RectBuffer::InitializePrototype()
 std::shared_ptr<RectBuffer> RectBuffer::Create()
 {
 	auto instance = std::make_shared<RectBuffer>();
-	FAILED_CHECK_RETURN_MSG(instance->InitializePrototype(), nullptr, TEXT("RectBuffer::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->InitializePrototype(), nullptr, TEXT("Failed"));
 	return instance;
 }
 
 std::shared_ptr<Component> RectBuffer::Clone(void* _arg)
 {
 	auto instance = std::make_shared<RectBuffer>(*this);
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(_arg), nullptr, TEXT("RectBuffer::Clone\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_arg), nullptr, TEXT("Failed"));
 	return instance;
 }

@@ -5,9 +5,6 @@ USING(Engine)
 
 HRESULT Client::MainApp::Initialize()
 {
-	//FAILED_CHECK_RETURN_MSG(Test(), E_FAIL, TEXT("Test")); // hr는 HRESULT 타입의 변수입니다.
-	//FAILED_CHECK_MSG(Test(), TEXT("Test"));
-	//FAILED_CHECK(Test());
 	GRAPHICDESC		graphicDesc;
 	ZeroMemory(&graphicDesc, sizeof(GRAPHICDESC));
 
@@ -39,6 +36,6 @@ HRESULT Client::MainApp::Render()
 std::unique_ptr<Client::MainApp> Client::MainApp::Create()
 {
 	auto instance = std::make_unique<Client::MainApp>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Client::MainApp::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Failed"));
 	return instance;
 }

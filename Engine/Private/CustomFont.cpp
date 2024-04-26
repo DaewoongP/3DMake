@@ -29,6 +29,6 @@ HRESULT CustomFont::Render(const std::wstring& _text, const _float2& _position, 
 std::shared_ptr<CustomFont> CustomFont::Create(ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext, const std::wstring& _fontFilePath)
 {
 	auto instance = std::make_shared<CustomFont>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(_device, _deviceContext, _fontFilePath), nullptr, TEXT("CustomFont::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_device, _deviceContext, _fontFilePath), nullptr, TEXT("Failed"));
 	return instance;
 }

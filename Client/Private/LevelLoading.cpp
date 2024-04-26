@@ -42,6 +42,6 @@ void Client::LevelLoading::Tick(_float _timeDelta)
 std::unique_ptr<Client::LevelLoading> Client::LevelLoading::Create(LevelType _nextLevelType)
 {
 	auto instance = std::make_unique<Client::LevelLoading>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(_nextLevelType), nullptr, TEXT("Client::LevelLoading::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_nextLevelType), nullptr, TEXT("Failed"));
 	return instance;
 }

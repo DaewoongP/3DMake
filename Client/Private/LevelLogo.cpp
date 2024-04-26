@@ -21,6 +21,6 @@ void Client::LevelLogo::Tick(_float _timeDelta)
 std::unique_ptr<Client::LevelLogo> Client::LevelLogo::Create()
 {
 	auto instance = std::make_unique<Client::LevelLogo>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Client::LevelLogo::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Failed"));
 	return instance;
 }

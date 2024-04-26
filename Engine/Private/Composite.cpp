@@ -39,13 +39,11 @@ void Composite::LateTick(_float _timeDelta)
 
 std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototypeKey, const std::wstring& _componentKey, void* _arg, _int _levelIndex)
 {
-	// _levelIndex�� -1�̶�� ���� ���� �ε����� �˾Ƽ� �־��ش�.
 	if (-1 == _levelIndex)
 	{
 		_levelIndex = LEVEL->GetCurrentLevelIndex();
 	}
 
-	// ������Ʈ �ߺ��� �˻�
 	NULL_CHECK_RETURN_MSG(!GetComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Existing component"));
 
 	// Clone component
@@ -53,7 +51,6 @@ std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototyp
 	if (nullptr == component)
 		return std::shared_ptr<Component>();
 
-	// ������Ʈ �߰� �� ��ȯ
 	mComponents.emplace(_componentKey, component);
 	return component;
 }

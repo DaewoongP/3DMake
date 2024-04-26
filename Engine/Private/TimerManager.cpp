@@ -28,7 +28,7 @@ HRESULT TimerManager::AddTimer(const std::wstring& _timerTag)
 
 	if (nullptr != timer)
 	{
-		MSG_BOX("TimerManager::AddTimer\n Already Have TimerTag");
+		MSG_BOX("Already Have TimerTag");
 		__debugbreak();
 		return E_FAIL;
 	}

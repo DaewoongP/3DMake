@@ -35,23 +35,7 @@
         swprintf(fullMessage, sizeof(fullMessage)/sizeof(wchar_t), L"%S\r\n%s", __FUNCTION__, _message);    \
         wchar_t title[256];                                                                                 \
         swprintf(title, sizeof(title)/sizeof(wchar_t), L"%S::%d", filename, __LINE__);                      \
-        MessageBoxW(nullptr, fullMessage, title, MB_OK);      
-
-#define NULL_RETURN( _ptr, _return)	\
-	{if( _ptr == 0){return _return;}}
-
-#define NULL_CHECK( _ptr)	\
-	{if( _ptr == 0){__debugbreak();return;}}
-
-#define NULL_CHECK_RETURN( _ptr, _return)	\
-	{if( _ptr == 0){__debugbreak();return _return;}}
-
-#define NULL_CHECK_MSG( _ptr, _message )		\
-	{if( _ptr == 0){MessageBox(nullptr, _message, L"System Message",MB_OK);__debugbreak();}}
-
-#define NULL_CHECK_RETURN_MSG( _ptr, _return, _message )	\
-	{if( _ptr == 0){MessageBox(nullptr, _message, L"System Message",MB_OK);__debugbreak();return _return;}}
-
+        MessageBoxW(nullptr, fullMessage, title, MB_OK);                                                    \
 
 #define NULL_RETURN(_ptr, _return)						\
 	if(  _ptr == 0 )									\

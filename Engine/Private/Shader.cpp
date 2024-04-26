@@ -26,15 +26,15 @@ HRESULT Shader::InitializePrototype(const std::wstring& _shaderFilePath, const D
 	hlslFlag = D3DCOMPILE_OPTIMIZATION_LEVEL1;
 #endif
 	FAILED_CHECK_RETURN_MSG(D3DX11CompileEffectFromFile(_shaderFilePath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, hlslFlag, 0, GetDevice().Get(), mEffect.GetAddressOf(), nullptr), E_FAIL,
-		TEXT("Shader::InitializePrototype\nFailed Create Shader Effect File"));
+		TEXT("Failed Create Shader Effect File"));
 
 	ComPtr<ID3DX11EffectTechnique> technique = mEffect->GetTechniqueByIndex(0);
-	NULL_CHECK_RETURN_MSG(technique, E_FAIL, TEXT("Shader::InitializePrototype\nFailed Get Shader technique"));
+	NULL_CHECK_RETURN_MSG(technique, E_FAIL, TEXT("Failed Get Shader technique"));
 	
 	D3DX11_TECHNIQUE_DESC	techniqueDesc;
 	ZeroMemory(&techniqueDesc, sizeof(D3DX11_TECHNIQUE_DESC));
 
-	FAILED_CHECK_RETURN_MSG(technique->GetDesc(&techniqueDesc), E_FAIL, TEXT("Shader::InitializePrototype\nFailed Get Shader TECHNIQUEDESC"));
+	FAILED_CHECK_RETURN_MSG(technique->GetDesc(&techniqueDesc), E_FAIL, TEXT("Failed Get Shader TECHNIQUEDESC"));
 
 	mNumPasses = techniqueDesc.Passes;
 
@@ -43,15 +43,15 @@ HRESULT Shader::InitializePrototype(const std::wstring& _shaderFilePath, const D
 		ComPtr<ID3D11InputLayout> inputLayout;
 
 		ComPtr<ID3DX11EffectPass> _pass = technique->GetPassByIndex(i);
-		NULL_CHECK_RETURN_MSG(_pass, E_FAIL, TEXT("Shader::InitializePrototype\nFailed Get pass"));
+		NULL_CHECK_RETURN_MSG(_pass, E_FAIL, TEXT("Failed Get pass"));
 
 		D3DX11_PASS_DESC	passDesc;
 		ZeroMemory(&passDesc, sizeof(D3DX11_PASS_DESC));
 
-		FAILED_CHECK_RETURN_MSG(_pass->GetDesc(&passDesc), E_FAIL, TEXT("Shader::InitializePrototype\nFailed Get PASSDESC"));
+		FAILED_CHECK_RETURN_MSG(_pass->GetDesc(&passDesc), E_FAIL, TEXT("Failed Get PASSDESC"));
 
 		FAILED_CHECK_RETURN_MSG(GetDevice()->CreateInputLayout(_elements, _numElements, passDesc.pIAInputSignature, passDesc.IAInputSignatureSize, inputLayout.GetAddressOf()), E_FAIL, 
-			TEXT("Shader::InitializePrototype\nFailed CreateInputLayout"));
+			TEXT("Failed CreateInputLayout"));
 
 		mInputLayouts.emplace(passDesc.Name, inputLayout);
 	}
@@ -120,13 +120,13 @@ ComPtr<ID3DX11EffectVariable> Shader::GetVariable(const std::string& _constantNa
 std::shared_ptr<Shader> Shader::Create(const _tchar* _shaderFilePath, const D3D11_INPUT_ELEMENT_DESC* _elements, _uint _numElements)
 {
 	auto instance = std::make_shared<Shader>();
-	FAILED_CHECK_RETURN_MSG(instance->InitializePrototype(_shaderFilePath, _elements, _numElements), nullptr, TEXT("Shader::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->InitializePrototype(_shaderFilePath, _elements, _numElements), nullptr, TEXT("Failed"));
 	return instance;
 }
 
 std::shared_ptr<Component> Shader::Clone(void* _arg)
 {
 	auto instance = std::make_shared<Shader>(*this);
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(_arg), nullptr, TEXT("Shader::Clone\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_arg), nullptr, TEXT("Failed"));
 	return instance;
 }

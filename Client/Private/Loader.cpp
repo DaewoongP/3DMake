@@ -30,7 +30,7 @@ HRESULT Client::Loader::Initialize(LevelType _levelType)
 
 	if (0 == mhThread)
 	{
-		MSG_BOX("Loader::Initialize\n Failed beginthreadex");
+		DISPLAY_ERROR(TEXT("Failed beginthreadex"));
 		__debugbreak();
 		return E_FAIL;
 	}
@@ -40,7 +40,7 @@ HRESULT Client::Loader::Initialize(LevelType _levelType)
 
 HRESULT Client::Loader::Loading()
 {
-	FAILED_CHECK_RETURN_MSG(CoInitializeEx(nullptr, 0), E_FAIL, TEXT("Loader::Loading\n Failed"));
+	FAILED_CHECK_RETURN_MSG(CoInitializeEx(nullptr, 0), E_FAIL, TEXT("Failed"));
 
 	EnterCriticalSection(&mCriticalSection);
 
@@ -55,7 +55,7 @@ HRESULT Client::Loader::Loading()
 		hr = LoadingForPlay1();
 		break;
 	default:
-		MSG_BOX("Loader::Loading\n Loading Func Failed");
+		DISPLAY_ERROR(TEXT("Loading Func Failed"));
 		__debugbreak();
 		break;
 	}
@@ -84,6 +84,6 @@ HRESULT Client::Loader::LoadingForPlay1()
 std::unique_ptr<Client::Loader> Client::Loader::Create(LevelType _levelType)
 {
 	auto instance = std::make_unique<Client::Loader>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(_levelType), nullptr, TEXT("Client::Loader::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_levelType), nullptr, TEXT("Failed"));
 	return instance;
 }

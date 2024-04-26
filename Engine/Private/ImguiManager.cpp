@@ -27,7 +27,7 @@ HRESULT ImguiManager::Initialize(HWND hWnd, ComPtr<ID3D11Device> _device, ComPtr
 	// Setup Platform/Renderer backends
 	if (!ImGui_ImplWin32_Init(hWnd))
 	{
-		MessageBoxW(nullptr, TEXT("Engine::ImguiManager::Initialize\n Failed ImGui_ImplWin32_Init"), L"System Message", MB_OK);
+		DISPLAY_ERROR(TEXT("Failed ImGui_ImplWin32_Init"));
 		__debugbreak();
 		return E_FAIL;
 	}
@@ -35,7 +35,7 @@ HRESULT ImguiManager::Initialize(HWND hWnd, ComPtr<ID3D11Device> _device, ComPtr
 	
 	if (!ImGui_ImplDX11_Init(mDevice.Get(), mDeviceContext.Get()))
 	{
-		MessageBoxW(nullptr, TEXT("Engine::ImguiManager::Initialize\n Failed ImGui_ImplDX11_Init"), L"System Message", MB_OK);
+		DISPLAY_ERROR(TEXT("Failed ImGui_ImplDX11_Init"));
 		__debugbreak();
 		return E_FAIL;
 	}

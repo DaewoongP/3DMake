@@ -18,6 +18,6 @@ void Client::LevelPlay1::Tick(_float _timeDelta)
 std::unique_ptr<Client::LevelPlay1> Client::LevelPlay1::Create()
 {
 	auto instance = std::make_unique<Client::LevelPlay1>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Client::LevelPlay1::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Failed"));
 	return instance;
 }

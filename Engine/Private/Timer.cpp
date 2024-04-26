@@ -8,6 +8,7 @@ HRESULT Timer::Initialize()
 	QueryPerformanceCounter(&mLastTime);
 	QueryPerformanceCounter(&mFixTime);
 	QueryPerformanceFrequency(&mCpuTick);
+
 	mTimeDelta = 0.f;
 
 	return S_OK;
@@ -31,6 +32,6 @@ void Timer::Tick()
 std::shared_ptr<Timer> Timer::Create()
 {
 	auto instance = std::make_shared<Timer>();
-	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Timer::Create\n Failed"));
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Failed"));
 	return instance;
 }
