@@ -91,7 +91,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
     // Create MainApp
-    std::unique_ptr<MainApp> mainApp = Factory<MainApp>::CreateUnique();
+    std::unique_ptr<MainApp> mainApp = MainApp::Create();
     _float timeAcc = 0.f;
 
     FAILED_RETURN(GAME->AddTimer(TEXT("Timer_Default")), FALSE);
@@ -121,6 +121,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             GAME->TickTimeDelta(TEXT("Timer_60"));
 
             mainApp->Tick(GAME->GetTimeDelta(TEXT("Timer_60")));
+            mainApp->Render();
 
             timeAcc = 0.f;
         }
@@ -158,6 +159,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT	windowRect = { 0, 0, gWinSizeX, gWinSizeY };
 
+   // imgui설정할때 윈도우 사이즈값 맞춰줌
+   AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, TRUE);
+
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
        CW_USEDEFAULT, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, nullptr, nullptr, hInstance, nullptr);
 
@@ -174,6 +178,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+// 이거 뿐만 아니라 위에 AdjustWindowRect도 맞춰줘야함
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

@@ -1,7 +1,4 @@
-
 #pragma once
-#include <cstring>
-
 ///////////////////////// My Macros //////////////////////////////////
 #define			PURE							= 0
 #define			MAX_DIK							256
@@ -28,109 +25,36 @@
 #define ENGINE_DLL		_declspec(dllimport)
 #endif
 
-//#ifndef IMGUI_API
-//#define IMGUI_API	__declspec(dllexport)
-//#endif
-//#ifndef IMGUI_IMPL_API
-//#define IMGUI_IMPL_API	IMGUI_API
-//#endif
+#define NULL_RETURN( _ptr, _return)	\
+	{if( _ptr == 0){return _return;}}
 
-#define DISPLAY_ERROR(_message)                                                                             \
-        const char* filename = strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__;            \
-        filename = strrchr(filename, '/') ? strrchr(filename, '/') + 1 : filename;                          \
-        wchar_t fullMessage[512];                                                                           \
-        swprintf(fullMessage, sizeof(fullMessage)/sizeof(wchar_t), L"%S\r\n%s", __FUNCTION__, _message);    \
-        wchar_t title[256];                                                                                 \
-        swprintf(title, sizeof(title)/sizeof(wchar_t), L"%S::%d", filename, __LINE__);                      \
-        MessageBoxW(nullptr, fullMessage, title, MB_OK);                                                    \
+#define NULL_CHECK( _ptr)	\
+	{if( _ptr == 0){__debugbreak();return;}}
 
+#define NULL_CHECK_RETURN( _ptr, _return)	\
+	{if( _ptr == 0){__debugbreak();return _return;}}
 
-#define NULL_RETURN(_ptr, _return)						\
-	if(  _ptr == 0 )									\
-	{													\
-		return _return;									\
-	}													\
+#define NULL_CHECK_MSG( _ptr, _message )		\
+	{if( _ptr == 0){MessageBox(nullptr, _message, L"System Message",MB_OK);__debugbreak();}}
 
-#define NULL_CHECK(_ptr)								\
-    if ( _ptr == 0)										\
-    {													\
-        __debugbreak();									\
-        return E_FAIL;									\
-    }
-
-#define NULL_CHECK_RETURN(_ptr, _return)				\
-    if ( _ptr == 0)							            \
-    {													\
-        __debugbreak();									\
-        return _return;									\
-    }
+#define NULL_CHECK_RETURN_MSG( _ptr, _return, _message )	\
+	{if( _ptr == 0){MessageBox(nullptr, _message, L"System Message",MB_OK);__debugbreak();return _return;}}
 
 
-#define NULL_CHECK_MSG(_ptr, _message)					\
-    if ( _ptr == 0)							            \
-    {													\
-        DISPLAY_ERROR(_message);						\
-		__debugbreak();									\
-        return E_FAIL;									\
-    }
+#define FAILED_RETURN(_hr, _return)	if( ((HRESULT)(_hr)) < 0 )	\
+	{ return _return; }
 
-#define NULL_CHECK_RETURN_MSG(_ptr, _return, _message)  \
-    if ( _ptr == 0)							            \
-    {													\
-        DISPLAY_ERROR(_message);						\
-		__debugbreak();									\
-        return _return;									\
-	} 
+#define FAILED_CHECK(_hr)	if( ((HRESULT)(_hr)) < 0 )	\
+	{ MessageBoxW(nullptr, L"Failed", L"System Error",MB_OK); __debugbreak(); return E_FAIL;}
 
+#define FAILED_CHECK_RETURN(_hr, _return)	if( ((HRESULT)(_hr)) < 0 )		\
+	{ MessageBoxW(nullptr, L"Failed", L"System Error",MB_OK); __debugbreak(); return _return;}
 
-#define FAILED_RETURN(_hr, _return)						\
-	if( ((HRESULT)(_hr)) < 0 )							\
-	{													\
-		return _return;									\
-	}													\
+#define FAILED_CHECK_MSG( _hr, _message)	if( ((HRESULT)(_hr)) < 0 )	\
+	{ MessageBoxW(nullptr, _message, L"System Message",MB_OK); __debugbreak();return E_FAIL;}
 
-#define FAILED_CHECK(_hr)								\
-    if (((HRESULT)(_hr)) < 0)							\
-    {													\
-        __debugbreak();									\
-        return E_FAIL;									\
-    }
-
-#define FAILED_CHECK_RETURN(_hr, _return)				\
-    if (((HRESULT)(_hr)) < 0)							\
-    {													\
-        __debugbreak();									\
-        return _return;									\
-    }
-
-#define FAILED_CHECK_MSG(_hr, _message)					\
-    if (((HRESULT)(_hr)) < 0)							\
-    {													\
-        DISPLAY_ERROR(_message);						\
-		__debugbreak();									\
-        return E_FAIL;									\
-    }
-
-
-#define FAILED_CHECK_RETURN_MSG(_hr, _return, _message) \
-    if (((HRESULT)(_hr)) < 0)							\
-    {													\
-        DISPLAY_ERROR(_message);						\
-		__debugbreak();									\
-        return _return;									\
-	}    
-
-
-
-
-
-//#define DECLARE_SINGLETON(classname)				\
-//public:												\
-//    static classname* GetInstance()					\
-//    {												\
-//        static classname sInstance;					\
-//        return &sInstance;							\
-//    }
+#define FAILED_CHECK_RETURN_MSG( _hr, _return, _message)	if( ((HRESULT)(_hr)) < 0 )	\
+	{ MessageBoxW(nullptr, _message, L"System Message",MB_OK); __debugbreak();return _return;}
 
 #define NO_COPY(CLASSNAME)										\
 		private:												\
@@ -140,29 +64,24 @@
 #define DECLARE_SINGLETON(CLASSNAME)							\
 		NO_COPY(CLASSNAME)										\
 		private:												\
-		static CLASSNAME*	m_pInstance;						\
+		static CLASSNAME*	mInstance;							\
 		public:													\
 		static CLASSNAME*	GetInstance( void );				\
 		static void DestroyInstance( void );					\
 
 #define IMPLEMENT_SINGLETON(CLASSNAME)							\
-		CLASSNAME*	CLASSNAME::m_pInstance = nullptr;			\
+		CLASSNAME*	CLASSNAME::mInstance = nullptr;				\
 		CLASSNAME*	CLASSNAME::GetInstance( void )	{			\
-			if(nullptr == m_pInstance) {						\
-				m_pInstance = new CLASSNAME;					\
+			if(nullptr == mInstance) {							\
+				mInstance = new CLASSNAME;						\
 			}													\
-			return m_pInstance;									\
+			return mInstance;									\
 		}														\
-		void CLASSNAME::DestroyInstance( void ) {		\
-			if(nullptr != m_pInstance)							\
+		void CLASSNAME::DestroyInstance( void ) {				\
+			if(nullptr != mInstance)							\
 			{													\
-				delete m_pInstance;								\
+				delete mInstance;								\
 			}													\
 		}														\
 
-#define GET_SINGLE(classname)    classname::GetInstance()
-
-
-
-
-
+#define GET_SINGLE(CLASSNAME)    CLASSNAME::GetInstance()

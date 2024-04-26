@@ -1,5 +1,4 @@
 #include "Loader.h"
-#include "Factory.h"
 
 _uint WINAPI Thread_Main(void* _arg)
 {
@@ -80,4 +79,11 @@ HRESULT Client::Loader::LoadingForPlay1()
 	mFinished = true;
 
 	return S_OK;
+}
+
+std::unique_ptr<Client::Loader> Client::Loader::Create(LevelType _levelType)
+{
+	auto instance = std::make_unique<Client::Loader>();
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_levelType), nullptr, TEXT("Client::Loader::Create\n Failed"));
+	return instance;
 }

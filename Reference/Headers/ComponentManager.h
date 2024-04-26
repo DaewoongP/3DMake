@@ -1,16 +1,16 @@
 #pragma once
-#include "Component.h"
+#include "Composite.h"
+#include "Shader.h"
+#include "RectBuffer.h"
 
 BEGIN(Engine)
 
 class ComponentManager
 {
 	DECLARE_SINGLETON(ComponentManager)
-	//HRESULT Initialize();
-
 public:
-	ComponentManager();
-	~ComponentManager();
+	ComponentManager() = default;
+	~ComponentManager() = default;
 
 	HRESULT Initialize(_uint _numLevels);
 	HRESULT AddPrototype(_uint _levelIndex, const std::wstring& _prototypeTag, std::shared_ptr<Component> _prototype);
@@ -22,7 +22,7 @@ private:
 
 private:
 	typedef std::vector<_umap<std::wstring, std::shared_ptr<Component>>>	PROTOTYPES;
-	PROTOTYPES mPrototypes;
+	PROTOTYPES	mPrototypes;
 };
 
 END

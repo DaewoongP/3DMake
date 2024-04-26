@@ -25,6 +25,15 @@
     <Filter Include="01. Levels\01. Level1">
       <UniqueIdentifier>{09460942-6d03-451d-b862-f0b8b30c5cb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject">
+      <UniqueIdentifier>{ea024430-189c-4e2b-8993-b859c3dc434f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. GameObject\Test">
+      <UniqueIdentifier>{90c570fa-df64-4bb9-afa4-a91bf4f2cee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97. ShaderFiles">
+      <UniqueIdentifier>{49fb87ee-1046-4b0c-b1ed-bfc85ccd8261}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -56,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="..\public\LevelLogo.h">
       <Filter>01. Levels\00. Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\TestObject.h">
+      <Filter>02. GameObject\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -90,5 +102,18 @@
     <ClCompile Include="..\private\LevelLogo.cpp">
       <Filter>01. Levels\00. Logo</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\TestObject.cpp">
+      <Filter>02. GameObject\Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\VtxtexShader.hlsl">
+      <Filter>97. ShaderFiles</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Bin\ShaderFiles\Shader_Client_Defines.hlsli">
+      <Filter>97. ShaderFiles</Filter>
+    </None>
   </ItemGroup>
 </Project>

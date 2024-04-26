@@ -1,5 +1,4 @@
 #include "LevelLoading.h"
-#include "Factory.h"
 #include "GameInstance.h"
 
 #include "LevelLogo.h"
@@ -13,7 +12,7 @@ HRESULT Client::LevelLoading::Initialize(LevelType _levelType)
 {
 	mNextLevelType = _levelType;
 
-	mLoader = Engine::Factory<Client::Loader>::CreateUnique(_levelType);
+	mLoader = Client::Loader::Create(_levelType);
 
 	return S_OK;
 }
@@ -22,7 +21,7 @@ void Client::LevelLoading::Tick(_float _timeDelta)
 {
 	DebugFunc::Text("Loading...", _timeDelta);
 
-	if (false == mLoader->GetFinished())
+	if (false == mLoader->IsFinished())
 		return;
 
 	std::unique_ptr<Level> level;
@@ -30,12 +29,19 @@ void Client::LevelLoading::Tick(_float _timeDelta)
 	switch (mNextLevelType)
 	{
 	case LevelType::LOGO:
-		level = Engine::Factory<Client::LevelLogo>::CreateUnique();
+		level = Client::LevelLogo::Create();
 		break;
 	case LevelType::PLAY1:
-		level = Engine::Factory<Client::LevelPlay1>::CreateUnique();
+		level = Client::LevelPlay1::Create();
 		break;
 	}
 
 	FAILED_RETURN(GAME->OpenLevel(static_cast<_uint>(mNextLevelType), std::move(level)), );
+}
+
+std::unique_ptr<Client::LevelLoading> Client::LevelLoading::Create(LevelType _nextLevelType)
+{
+	auto instance = std::make_unique<Client::LevelLoading>();
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(_nextLevelType), nullptr, TEXT("Client::LevelLoading::Create\n Failed"));
+	return instance;
 }

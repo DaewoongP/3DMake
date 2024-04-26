@@ -12,22 +12,9 @@ Composite::Composite(const Composite& rhs)
 {
 }
 
-Composite::~Composite()
+std::shared_ptr<Component> Composite::GetComponent(const std::wstring& _key)
 {
-}
-
-HRESULT Composite::Initialize_Prototype()
-{
-	__super::Initialize_Prototype();
-
-	return S_OK;
-}
-
-HRESULT Composite::Initialize(void* _arg)
-{
-	__super::Initialize(_arg);
-
-	return S_OK;
+	return FindComponent(_key);
 }
 
 void Composite::Tick(_float _timeDelta)
@@ -36,6 +23,8 @@ void Composite::Tick(_float _timeDelta)
 	{
 		component.second->Tick(_timeDelta);
 	}
+
+	__super::Tick(_timeDelta);
 }
 
 void Composite::LateTick(_float _timeDelta)
@@ -44,19 +33,19 @@ void Composite::LateTick(_float _timeDelta)
 	{
 		component.second->LateTick(_timeDelta);
 	}
-	
-}
 
+	__super::LateTick(_timeDelta);
+}
 
 std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototypeKey, const std::wstring& _componentKey, void* _arg, _int _levelIndex)
 {
-	// _levelIndex°¡ -1ÀÌ¶ó¸é ÇöÀç ·¹º§ ÀÎµ¦½º¸¦ ¾Ë¾Æ¼­ ³Ö¾îÁØ´Ù.
+	// _levelIndexï¿½ï¿½ -1ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¼ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½.
 	if (-1 == _levelIndex)
 	{
 		_levelIndex = LEVEL->GetCurrentLevelIndex();
 	}
 
-	// ÄÄÆ÷³ÍÆ® Áßº¹¼º °Ë»ç
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ßºï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	NULL_CHECK_RETURN_MSG(!GetComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Existing component"));
 
 	// Clone component
@@ -64,12 +53,12 @@ std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototyp
 	if (nullptr == component)
 		return std::shared_ptr<Component>();
 
-	// ÄÄÆ÷³ÍÆ® Ãß°¡ ÈÄ ¹ÝÈ¯
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	mComponents.emplace(_componentKey, component);
 	return component;
 }
 
-std::shared_ptr<Component> Composite::GetComponent(const std::wstring& _key)
+std::shared_ptr<Component> Composite::FindComponent(const std::wstring& _key)
 {
 	auto	iter = mComponents.find(_key);
 

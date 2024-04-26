@@ -27,3 +27,10 @@ void Timer::Tick()
 
 	mLastTime = mFrameTime;
 }
+
+std::shared_ptr<Timer> Timer::Create()
+{
+	auto instance = std::make_shared<Timer>();
+	FAILED_CHECK_RETURN_MSG(instance->Initialize(), nullptr, TEXT("Timer::Create\n Failed"));
+	return instance;
+}

@@ -19,6 +19,9 @@ private:
 	LARGE_INTEGER			mCpuTick;
 
 	_float					mTimeDelta;
+
+public:
+	static std::shared_ptr<Timer> Create();
 };
 
 END
