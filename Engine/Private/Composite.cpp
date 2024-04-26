@@ -39,28 +39,23 @@ void Composite::LateTick(_float _timeDelta)
 
 std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototypeKey, const std::wstring& _componentKey, void* _arg, _int _levelIndex)
 {
-	// _levelIndex°¡ -1ÀÌ¶ó¸é ÇöÀç ·¹º§ ÀÎµ¦½º¸¦ ¾Ë¾Æ¼­ ³Ö¾îÁØ´Ù.
+	// _levelIndexï¿½ï¿½ -1ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¼ï¿½ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½.
 	if (-1 == _levelIndex)
 	{
 		_levelIndex = LEVEL->GetCurrentLevelIndex();
 	}
 
-	// ÄÄÆ÷³ÍÆ® Áßº¹¼º °Ë»ç
-	NULL_CHECK_RETURN_MSG(!FindComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Engine::Composite::AddComponent\nexisting component"));
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ßºï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	NULL_CHECK_RETURN_MSG(!GetComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Existing component"));
 
 	// Clone component
 	std::shared_ptr<Component> component = GAME->CloneComponent(_levelIndex, _prototypeKey, _arg);
 	if (nullptr == component)
 		return std::shared_ptr<Component>();
 
-	// ÄÄÆ÷³ÍÆ® Ãß°¡ ÈÄ ¹ÝÈ¯
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ß°ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	mComponents.emplace(_componentKey, component);
 	return component;
-}
-
-HRESULT Composite::RemoveComponent(const std::wstring& _key)
-{
-	return S_OK;
 }
 
 std::shared_ptr<Component> Composite::FindComponent(const std::wstring& _key)
@@ -71,4 +66,9 @@ std::shared_ptr<Component> Composite::FindComponent(const std::wstring& _key)
 		return nullptr;
 
 	return iter->second;
+}
+
+size_t Composite::RemoveComponent(const std::wstring& _key)
+{
+	return mComponents.erase(_key);
 }

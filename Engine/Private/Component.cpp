@@ -15,5 +15,5 @@ Component::Component(const Component& rhs)
 	, mDeviceContext(rhs.mDeviceContext)
 	, mCloned(true)
 {
-
+	
 }
