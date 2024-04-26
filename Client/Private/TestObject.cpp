@@ -23,7 +23,7 @@ HRESULT TestObject::Render()
 
 	_float m_fX = gWinSizeX * 0.5f;
 	_float m_fY = gWinSizeY * 0.5f;
-	XMStoreFloat4x4(&identityMatrix, XMMatrixScaling(gWinSizeX - 5, gWinSizeY- 5, 1.f) * XMMatrixTranslation(m_fX - gWinSizeX * 0.5f, -m_fY + gWinSizeY * 0.5f, 0.f));
+	XMStoreFloat4x4(&identityMatrix, XMMatrixScaling(gWinSizeX, gWinSizeY, 1.f) * XMMatrixTranslation(m_fX - gWinSizeX * 0.5f, -m_fY + gWinSizeY * 0.5f, 0.f));
 	mShader->BindMatrix("gWorldMatrix", &identityMatrix);
 
 	XMStoreFloat4x4(&viewMatrix, XMMatrixIdentity());

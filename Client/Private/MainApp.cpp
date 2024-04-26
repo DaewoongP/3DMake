@@ -8,15 +8,9 @@ HRESULT Client::MainApp::Initialize()
 	GRAPHICDESC		graphicDesc;
 	ZeroMemory(&graphicDesc, sizeof(GRAPHICDESC));
 
-	RECT rect;
-	ZeroMemory(&rect, sizeof(RECT));
-	GetClientRect(ghWnd, &rect);
-	_int clientWidth = rect.right - rect.left;
-	_int clientHeight = rect.bottom - rect.top;
-
 	graphicDesc.hWnd = ghWnd;
-	graphicDesc.ViewportSizeX = clientWidth;
-	graphicDesc.ViewportSizeY = clientHeight;
+	graphicDesc.ViewportSizeX = gWinSizeX;
+	graphicDesc.ViewportSizeY = gWinSizeY;
 	graphicDesc.WinMode = GRAPHICDESC::WINMODE::WM_WIN;
 
 	FAILED_RETURN(GAME->Initialize(ghInst, static_cast<_uint>(LevelType::TYPEEND), graphicDesc, mDevice, mDeviceContext), E_FAIL);

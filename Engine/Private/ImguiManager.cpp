@@ -12,7 +12,6 @@ ImguiManager::~ImguiManager()
 
 HRESULT ImguiManager::Initialize(HWND hWnd, ComPtr<ID3D11Device> _device, ComPtr<ID3D11DeviceContext> _deviceContext)
 {
-	
 	mDevice = _device;
 	mDeviceContext = _deviceContext;
 	
@@ -48,7 +47,8 @@ void ImguiManager::Begin()
 {
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();	
+	ImGui::NewFrame();
+	//ImGui::ShowDemoWindow();
 }
 
 void ImguiManager::End()
