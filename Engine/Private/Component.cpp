@@ -13,7 +13,7 @@ Component::Component(const Component& rhs)
 	, mDeviceContext(rhs.mDeviceContext)
 	, mIsCloned(true)
 {
-
+	
 }
 
 Component::~Component()

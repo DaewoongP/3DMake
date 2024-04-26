@@ -44,6 +44,7 @@ void Composite::LateTick(_float _timeDelta)
 	{
 		component.second->LateTick(_timeDelta);
 	}
+	
 }
 
 
@@ -56,7 +57,7 @@ std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototyp
 	}
 
 	// 컴포넌트 중복성 검사
-	NULL_CHECK_RETURN_MSG(!FindComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Engine::Composite::AddComponent\nexisting component"));
+	NULL_CHECK_RETURN_MSG(!GetComponent(_componentKey), std::shared_ptr<Component>(), TEXT("Existing component"));
 
 	// Clone component
 	std::shared_ptr<Component> component = GAME->CloneComponent(_levelIndex, _prototypeKey, _arg);
@@ -70,20 +71,15 @@ std::shared_ptr<Component> Composite::AddComponent(const std::wstring& _prototyp
 
 std::shared_ptr<Component> Composite::GetComponent(const std::wstring& _key)
 {
-	return FindComponent(_key);
-}
-
-HRESULT Composite::RemoveComponent(const std::wstring& _key)
-{
-	return E_NOTIMPL;
-}
-
-std::shared_ptr<Component> Composite::FindComponent(const std::wstring& _key)
-{
 	auto	iter = mComponents.find(_key);
 
 	if (iter == mComponents.end())
 		return nullptr;
 
 	return iter->second;
+}
+
+size_t Composite::RemoveComponent(const std::wstring& _key)
+{
+	return mComponents.erase(_key);
 }

@@ -18,10 +18,7 @@ public:
 
 	std::shared_ptr<Component> AddComponent(const std::wstring& _prototypeKey, const std::wstring& _componentKey, void* _arg = nullptr, _int _levelIndex = -1);
 	std::shared_ptr<Component> GetComponent(const std::wstring& _key);
-	HRESULT RemoveComponent(const std::wstring& _key);
-
-private:
-	std::shared_ptr<Component> FindComponent(const std::wstring& _key);
+	size_t RemoveComponent(const std::wstring& _key);
 
 public:
 	virtual std::shared_ptr<Component> Clone(void* _arg) = 0;

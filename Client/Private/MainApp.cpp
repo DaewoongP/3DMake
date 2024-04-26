@@ -5,6 +5,9 @@ USING(Engine)
 
 HRESULT Client::MainApp::Initialize()
 {
+	//FAILED_CHECK_RETURN_MSG(Test(), E_FAIL, TEXT("Test")); // hr는 HRESULT 타입의 변수입니다.
+	//FAILED_CHECK_MSG(Test(), TEXT("Test"));
+	//FAILED_CHECK(Test());
 	GRAPHICDESC		graphicDesc;
 	ZeroMemory(&graphicDesc, sizeof(GRAPHICDESC));
 

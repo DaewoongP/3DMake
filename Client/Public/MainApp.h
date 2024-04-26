@@ -14,6 +14,7 @@ public:
 	HRESULT Initialize();
 	void Tick(_float _timeDelta);
 
+	HRESULT Test() { return E_FAIL; }
 private:
 	ComPtr<ID3D11Device>		mDevice;
 	ComPtr<ID3D11DeviceContext>	mDeviceContext;
