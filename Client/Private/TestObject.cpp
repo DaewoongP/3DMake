@@ -42,7 +42,8 @@ HRESULT TestObject::Render()
 HRESULT TestObject::AddComponents()
 {
 	mRectBuffer = Engine::RectBuffer::Create();
-	mShader = Engine::Shader::Create(TEXT("../Bin/ShaderFiles/VtxtexShader.hlsl"), Engine::VTXPOSTEX_DECL::Elements, Engine::VTXPOSTEX_DECL::iNumElements);
+	mShader = Engine::Shader::Create(TEXT("../Bin/ShaderFiles/VtxtexShader.hlsl"), Engine::VTXPOSTEX_DECL::Elements, Engine::VTXPOSTEX_DECL::NumElements);
+	mTexture = Engine::Texture::Create(, _uint _numTexture, TextureManager::TextureSaveType _saveType)
 	return S_OK;
 }
 

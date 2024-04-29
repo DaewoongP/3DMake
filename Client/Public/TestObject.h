@@ -22,6 +22,7 @@ private:
 private:
 	std::shared_ptr<Engine::RectBuffer> mRectBuffer;
 	std::shared_ptr<Engine::Shader>		mShader;
+	std::shared_ptr<Engine::Texture>	mTexture;
 
 public:
 	static std::shared_ptr<TestObject> Create();

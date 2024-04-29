@@ -1,6 +1,7 @@
 #pragma once
 #include "Composite.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "RectBuffer.h"
 
 BEGIN(Engine)

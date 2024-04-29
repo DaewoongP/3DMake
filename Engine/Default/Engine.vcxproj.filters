@@ -70,11 +70,14 @@
     <Filter Include="01. Utility\01. Component\02. Buffer\01. Rect">
       <UniqueIdentifier>{1c00c217-354a-4dda-a252-7ac2abb24445}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Utility\01. Component\02. Buffer\02. Shader">
+    <Filter Include="01. Utility\01. Component\03. Shader">
       <UniqueIdentifier>{146db03b-279a-4de1-935b-60b85f154a8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Utility\01. Component\02. Buffer\03. Texture">
-      <UniqueIdentifier>{843e2b58-dc0f-442c-81b0-b85e0bcbfdf3}</UniqueIdentifier>
+    <Filter Include="01. Utility\01. Component\04. Texture">
+      <UniqueIdentifier>{1145a492-5eb9-4a56-8e16-ba48ce9903a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Utility\01. Component\04. Texture\Manager">
+      <UniqueIdentifier>{225f0b61-cb37-4e17-99be-207a424a48cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +172,13 @@
       <Filter>01. Utility\01. Component\02. Buffer\01. Rect</Filter>
     </ClInclude>
     <ClInclude Include="..\public\Shader.h">
-      <Filter>01. Utility\01. Component\02. Buffer\02. Shader</Filter>
+      <Filter>01. Utility\01. Component\03. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Texture.h">
+      <Filter>01. Utility\01. Component\04. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\TextureManager.h">
+      <Filter>01. Utility\01. Component\04. Texture\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -246,7 +255,13 @@
       <Filter>99. Headers</Filter>
     </ClCompile>
     <ClCompile Include="..\private\Shader.cpp">
-      <Filter>01. Utility\01. Component\02. Buffer\02. Shader</Filter>
+      <Filter>01. Utility\01. Component\03. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\Texture.cpp">
+      <Filter>01. Utility\01. Component\04. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\private\TextureManager.cpp">
+      <Filter>01. Utility\01. Component\04. Texture\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

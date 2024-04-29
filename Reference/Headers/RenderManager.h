@@ -10,7 +10,7 @@ public:
 	enum class RenderType { PRIORITY, TYPEEND };
 
 public:
-	RenderManager() = default;;
+	RenderManager() = default;
 	~RenderManager() = default;
 
 public:

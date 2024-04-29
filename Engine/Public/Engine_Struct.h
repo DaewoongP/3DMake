@@ -12,110 +12,110 @@ namespace Engine
 
 	typedef struct tagVertex_Position
 	{
-		XMFLOAT3		vPosition;		
+		XMFLOAT3		Position;		
 	}VTXPOS;
 
 	typedef struct ENGINE_DLL tagVertex_Position_Declaration
 	{
-		static const unsigned int				iNumElements = { 1 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[1];
+		static const unsigned int				NumElements = { 1 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXPOS_DECL;
 		
 
 	typedef struct tagVertex_Position_TexCoord
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT2		vTexCoord;
+		XMFLOAT3		Position;
+		XMFLOAT2		TexCoord;
 	}VTXPOSTEX;
 
 	typedef struct ENGINE_DLL tagVertex_Position_TexCoord_Declaration
 	{
-		static const unsigned int				iNumElements = { 2 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[2];
+		static const unsigned int				NumElements = { 2 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXPOSTEX_DECL;
 
 
 	typedef struct tagVertex_Cube
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT3		vTexCoord;
+		XMFLOAT3		Position;
+		XMFLOAT3		TexCoord;
 	}VTXCUBE;
 
 	typedef struct ENGINE_DLL tagVertex_Cube_Declaration
 	{
-		static const unsigned int				iNumElements = { 2 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[2];
+		static const unsigned int				NumElements = { 2 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXCUBE_DECL;
 
 
 	typedef struct tagVertex_Position_Size
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT2		vPSize;
+		XMFLOAT3		Position;
+		XMFLOAT2		PSize;
 	}VTXPOINT;
 
 
 	typedef struct tagVertex_Position_Normal_TexCoord
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT3		vNormal;
-		XMFLOAT2		vTexCoord;
+		XMFLOAT3		Position;
+		XMFLOAT3		Normal;
+		XMFLOAT2		TexCoord;
 	}VTXPOSNORTEX;
 
 	typedef struct ENGINE_DLL tagVertex_Position_Normal_TexCoord_Declaration
 	{
-		static const unsigned int				iNumElements = { 3 };
-		static const D3D11_INPUT_ELEMENT_DESC	Elements[iNumElements];
+		static const unsigned int				NumElements = { 3 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXPOSNORTEX_DECL;
 
 	typedef struct tagVertex_Mesh
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT3		vNormal;
-		XMFLOAT2		vTexCoord;
-		XMFLOAT3		vTangent;
+		XMFLOAT3		Position;
+		XMFLOAT3		Normal;
+		XMFLOAT2		TexCoord;
+		XMFLOAT3		Tangent;
 	}VTXMESH;
 
 	typedef struct ENGINE_DLL tagVertex_Mesh_Declaration
 	{
-		static const unsigned int				iNumElements = { 4 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[4];
+		static const unsigned int				NumElements = { 4 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXMESH_DECL;
 
 
 	typedef struct tagVertex_AnimMesh
 	{
-		XMFLOAT3		vPosition;
-		XMFLOAT3		vNormal;
-		XMFLOAT2		vTexCoord;
-		XMFLOAT3		vTangent;
-		XMUINT4			vBlendIndices;
-		XMFLOAT4		vBlendWeights;
+		XMFLOAT3		Position;
+		XMFLOAT3		Normal;
+		XMFLOAT2		TexCoord;
+		XMFLOAT3		Tangent;
+		XMUINT4			BlendIndices;
+		XMFLOAT4		BlendWeights;
 	}VTXANIMMESH;
 
 	typedef struct ENGINE_DLL tagVertex_AnimMesh_Declaration
 	{
-		static const unsigned int				iNumElements = { 6 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[6];
+		static const unsigned int				NumElements = { 6 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXANIMMESH_DECL;
 
 	typedef struct tagVertex_Instance
 	{		
-		XMFLOAT4		vRight; 
-		XMFLOAT4		vUp;
-		XMFLOAT4		vLook;
-		XMFLOAT4		vTranslation;
+		XMFLOAT4		Right; 
+		XMFLOAT4		Up;
+		XMFLOAT4		Look;
+		XMFLOAT4		Translation;
 	}VTXINSTANCE;
 
 	typedef struct ENGINE_DLL tagVertex_Rect_Instance_Declaration
 	{
-		static const unsigned int				iNumElements = { 6 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[6];
+		static const unsigned int				NumElements = { 6 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXRECTINSTANCE_DECL;
 
 	typedef struct ENGINE_DLL tagVertex_Point_Instance_Declaration
 	{
-		static const unsigned int				iNumElements = { 6 };
-		static const D3D11_INPUT_ELEMENT_DESC			Elements[6];
+		static const unsigned int				NumElements = { 6 };
+		static const D3D11_INPUT_ELEMENT_DESC	Elements[NumElements];
 	}VTXPOINTINSTANCE_DECL;
 }

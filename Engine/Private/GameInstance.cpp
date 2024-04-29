@@ -4,6 +4,7 @@
 #include "FontManager.h"
 #include "ImguiManager.h"
 #include "LevelManager.h"
+#include "TextureManager.h"
 
 USING(Engine)
 
@@ -92,6 +93,7 @@ void GameInstance::AddRenderGroup(RenderManager::RenderType _renderType, std::sh
 HRESULT GameInstance::ClearLevelResources(_uint _preLevelIndex)
 {
     COM->ClearLevelResources(_preLevelIndex);
+    TEXTURE->ClearLevelTextures();
 
     return S_OK;
 }
@@ -113,6 +115,8 @@ void GameInstance::Release()
     GUI->DestroyInstance();
 
     LEVEL->DestroyInstance();
+
+    TEXTURE->DestroyInstance();
 
     COM->DestroyInstance();
 }

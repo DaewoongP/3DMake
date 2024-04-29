@@ -36,17 +36,17 @@ HRESULT RectBuffer::InitializePrototype()
 	VTXPOSTEX* pVertices = new VTXPOSTEX[mNumVertices];
 	ZeroMemory(pVertices, sizeof(VTXPOSTEX) * mNumVertices);
 
-	pVertices[0].vPosition = _float3(-0.5f, 0.5f, 0.f);
-	pVertices[0].vTexCoord = _float2(0.f, 0.f);
+	pVertices[0].Position = _float3(-0.5f, 0.5f, 0.f);
+	pVertices[0].TexCoord = _float2(0.f, 0.f);
 
-	pVertices[1].vPosition = _float3(0.5f, 0.5f, 0.f);
-	pVertices[1].vTexCoord = _float2(1.f, 0.f);
+	pVertices[1].Position = _float3(0.5f, 0.5f, 0.f);
+	pVertices[1].TexCoord = _float2(1.f, 0.f);
 
-	pVertices[2].vPosition = _float3(0.5f, -0.5f, 0.f);
-	pVertices[2].vTexCoord = _float2(1.f, 1.f);
+	pVertices[2].Position = _float3(0.5f, -0.5f, 0.f);
+	pVertices[2].TexCoord = _float2(1.f, 1.f);
 
-	pVertices[3].vPosition = _float3(-0.5f, -0.5f, 0.f);
-	pVertices[3].vTexCoord = _float2(0.f, 1.f);
+	pVertices[3].Position = _float3(-0.5f, -0.5f, 0.f);
+	pVertices[3].TexCoord = _float2(0.f, 1.f);
 
 	D3D11_SUBRESOURCE_DATA subResourceData;
 	ZeroMemory(&subResourceData, sizeof(D3D11_SUBRESOURCE_DATA));
