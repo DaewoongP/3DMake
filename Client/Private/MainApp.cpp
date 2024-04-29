@@ -17,7 +17,7 @@ HRESULT Client::MainApp::Initialize()
 	FAILED_RETURN(GAME->OpenLevel(static_cast<_uint>(LevelType::LOGO), LevelLogo::Create()), E_FAIL);
 
 #ifdef _DEBUG
-	FAILED_RETURN(GAME->AddFont(mDevice, mDeviceContext, TEXT("Font_135"), TEXT("../../Resource/Font/135ex.spritefont")), E_FAIL);
+	FAILED_RETURN(GAME->AddFont(mDevice, mDeviceContext, TEXT("Font_135"), TEXT("../../Resource/Default/Font/135ex.spritefont")), E_FAIL);
 #endif // _DEBUG
 
 	return S_OK;

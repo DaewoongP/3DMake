@@ -421,3 +421,4 @@ Tool.lib
 *.zip
 
 IGResource/
+!Resource/**
