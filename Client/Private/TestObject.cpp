@@ -47,7 +47,7 @@ HRESULT TestObject::AddComponents()
 {
 	mRectBuffer = Engine::RectBuffer::Create();
 	mShader = Engine::Shader::Create(TEXT("../Bin/ShaderFiles/VtxtexShader.hlsl"), Engine::VTXPOSTEX_DECL::Elements, Engine::VTXPOSTEX_DECL::NumElements);
-	mTexture = Engine::Texture::Create(TEXT("../../Resource/Default0.dds"));
+	mTexture = Engine::Texture::Create(TEXT("../../Resource/Default/Textures/Default0.dds"));
 	return S_OK;
 }
 
