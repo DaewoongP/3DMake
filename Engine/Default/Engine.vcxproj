@@ -25,6 +25,7 @@
     <ClInclude Include="..\Public\Engine_Defines.h" />
     <ClInclude Include="..\Public\Engine_Function.h" />
     <ClInclude Include="..\Public\Engine_Macro.h" />
+    <ClInclude Include="..\Public\Engine_Model_Defines.h" />
     <ClInclude Include="..\Public\Engine_Struct.h" />
     <ClInclude Include="..\Public\Engine_Typedef.h" />
     <ClInclude Include="..\public\CustomFont.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="..\public\InputDevice.h" />
     <ClInclude Include="..\public\Level.h" />
     <ClInclude Include="..\public\LevelManager.h" />
+    <ClInclude Include="..\public\Model.h" />
     <ClInclude Include="..\public\RectBuffer.h" />
     <ClInclude Include="..\public\RenderManager.h" />
     <ClInclude Include="..\public\Shader.h" />
@@ -93,6 +95,7 @@
     <ClCompile Include="..\private\InputDevice.cpp" />
     <ClCompile Include="..\private\Level.cpp" />
     <ClCompile Include="..\private\LevelManager.cpp" />
+    <ClCompile Include="..\private\Model.cpp" />
     <ClCompile Include="..\private\RectBuffer.cpp" />
     <ClCompile Include="..\private\RenderManager.cpp" />
     <ClCompile Include="..\private\Shader.cpp" />

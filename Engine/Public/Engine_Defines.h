@@ -64,6 +64,7 @@ using namespace DirectX;
 #include "Engine_Macro.h"
 #include "Engine_Struct.h"
 #include "Engine_Function.h"
+#include "Engine_Model_Defines.h"
 
 #ifdef _DEBUG
 

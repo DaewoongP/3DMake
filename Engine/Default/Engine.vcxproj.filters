@@ -79,6 +79,9 @@
     <Filter Include="01. Utility\01. Component\04. Texture\Manager">
       <UniqueIdentifier>{225f0b61-cb37-4e17-99be-207a424a48cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Utility\01. Component\05. Model">
+      <UniqueIdentifier>{e1502a6d-352b-4505-a2ba-047f1a7bb36f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\GameInstance.h">
@@ -180,6 +183,10 @@
     <ClInclude Include="..\public\TextureManager.h">
       <Filter>01. Utility\01. Component\04. Texture\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="..\public\Model.h" />
+    <ClInclude Include="..\Public\Engine_Model_Defines.h">
+      <Filter>99. Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\GameInstance.cpp">
@@ -263,5 +270,6 @@
     <ClCompile Include="..\private\TextureManager.cpp">
       <Filter>01. Utility\01. Component\04. Texture\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="..\private\Model.cpp" />
   </ItemGroup>
 </Project>
