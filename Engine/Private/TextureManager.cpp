@@ -22,7 +22,7 @@ std::shared_ptr<class Texture> TextureManager::ReuseTexture(const std::wstring& 
 		return iter->second;
 	}
 
-	std::shared_ptr<class Texture> texture = Texture::Create(_textureFilePath, _numTextures);
+	std::shared_ptr<class Texture> texture = Texture::CreateOrigin(_textureFilePath, _numTextures);
 	
 	switch (_saveType)
 	{

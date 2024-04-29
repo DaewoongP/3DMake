@@ -36,7 +36,7 @@ HRESULT Texture::InitializePrototype(const std::wstring& _textureFilePath, _uint
 
 		if (!lstrcmp(ext, TEXT(".dds")))
 		{
-			hr = CreateDDSTextureFromFile(GetDevice().Get(), inputPath, nullptr, shaderResourceView.GetAddressOf());
+			hr = CreateDDSTextureFromFile(GetDevice().Get(), inputPath, nullptr, &shaderResourceView);
 		}
 		else if (!lstrcmp(ext, TEXT(".tga")))
 		{
@@ -45,12 +45,12 @@ HRESULT Texture::InitializePrototype(const std::wstring& _textureFilePath, _uint
 		}
 		else
 		{
-			hr = CreateWICTextureFromFile(GetDevice().Get(), inputPath, nullptr, shaderResourceView.GetAddressOf());
+			hr = CreateWICTextureFromFile(GetDevice().Get(), inputPath, nullptr, &shaderResourceView);
 		}
 
 		FAILED_CHECK_RETURN_MSG(hr, E_FAIL, TEXT("Failed"));
 
-		mTextures.emplace_back(shaderResourceView.Get());
+		mTextures.emplace_back(shaderResourceView);
 		mTexturePathes.emplace_back(inputPath);
 	}
 
@@ -70,6 +70,12 @@ HRESULT Texture::BindShaderResources(std::shared_ptr<class Shader> _shader, cons
 std::shared_ptr<Texture> Texture::Create(const std::wstring& _textureFilePath, _uint _numTexture, TextureManager::TextureSaveType _saveType)
 {
 	auto instance = TEXTURE->ReuseTexture(_textureFilePath, _numTexture, _saveType);
+	return instance;
+}
+
+std::shared_ptr<Texture> Texture::CreateOrigin(const std::wstring& _textureFilePath, _uint _numTexture)
+{
+	auto instance = std::make_shared<Texture>();
 	FAILED_CHECK_RETURN_MSG(instance->InitializePrototype(_textureFilePath, _numTexture), nullptr, TEXT("Failed"));
 	return instance;
 }

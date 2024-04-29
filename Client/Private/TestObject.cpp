@@ -32,6 +32,10 @@ HRESULT TestObject::Render()
 	mShader->BindMatrix("gViewMatrix", &viewMatrix);
 	mShader->BindMatrix("gProjMatrix", &projMatrix);
 
+	mTexture->BindShaderResources(mShader, "gTexture");
+	/*_float4 color = _float4(1.f, 0.f, 0.f, 1.f);
+	mShader->BindRawValue("gColor", &color, sizeof(_float4));*/
+
 	mShader->Begin("Test");
 
 	mRectBuffer->Render();
@@ -43,7 +47,7 @@ HRESULT TestObject::AddComponents()
 {
 	mRectBuffer = Engine::RectBuffer::Create();
 	mShader = Engine::Shader::Create(TEXT("../Bin/ShaderFiles/VtxtexShader.hlsl"), Engine::VTXPOSTEX_DECL::Elements, Engine::VTXPOSTEX_DECL::NumElements);
-	mTexture = Engine::Texture::Create(, _uint _numTexture, TextureManager::TextureSaveType _saveType)
+	mTexture = Engine::Texture::Create(TEXT("../../Resource/Default0.dds"));
 	return S_OK;
 }
 

@@ -77,14 +77,20 @@ HRESULT Shader::Begin(const std::string& _passName)
 	return S_OK;
 }
 
-HRESULT Shader::BindShaderResource(const std::string& _constantName, ID3D11ShaderResourceView* _shaderResourceView)
+HRESULT Shader::BindShaderResource(const std::string& _constantName, ComPtr<ID3D11ShaderResourceView> _shaderResourceView)
 {
-	return GetVariable(_constantName)->AsShaderResource()->SetResource(_shaderResourceView);
+	return GetVariable(_constantName)->AsShaderResource()->SetResource(_shaderResourceView.Get());
 }
 
-HRESULT Shader::BindShaderResources(const std::string& _constantName, ID3D11ShaderResourceView** _shaderResourceViewArray, _uint _numTexture)
+HRESULT Shader::BindShaderResources(const std::string& _constantName, ComPtr<ID3D11ShaderResourceView> _shaderResourceViewArray[], _uint _numTexture)
 {
-	return GetVariable(_constantName)->AsShaderResource()->SetResourceArray(_shaderResourceViewArray, 0, _numTexture);
+	std::vector<ID3D11ShaderResourceView*> shaderResourceViewArray(_numTexture);
+	for (_uint i = 0; i < _numTexture; ++i)
+	{
+		shaderResourceViewArray[i] = _shaderResourceViewArray[i].Get();
+	}
+
+	return GetVariable(_constantName)->AsShaderResource()->SetResourceArray(shaderResourceViewArray.data(), 0, _numTexture);
 }
 
 HRESULT Shader::BindMatrix(const std::string& _constantName, const _float4x4* _matrix)

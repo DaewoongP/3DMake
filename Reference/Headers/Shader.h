@@ -17,8 +17,8 @@ public:
 	HRESULT Begin(const std::string& _passName);
 
 public:
-	HRESULT BindShaderResource(const std::string& _constantName, ID3D11ShaderResourceView* _shaderResourceView);
-	HRESULT BindShaderResources(const std::string& _constantName, ID3D11ShaderResourceView** _shaderResourceViewArray, _uint _numTexture);
+	HRESULT BindShaderResource(const std::string& _constantName, ComPtr<ID3D11ShaderResourceView> _shaderResourceView);
+	HRESULT BindShaderResources(const std::string& _constantName, ComPtr<ID3D11ShaderResourceView> _shaderResourceViewArray[], _uint _numTexture);
 	HRESULT BindMatrix(const std::string& _constantName, const _float4x4* _matrix);
 	HRESULT BindMatrices(const std::string& _constantName, const _float4x4* _matrix, _uint numMatrices);
 	HRESULT BindRawValue(const std::string& _constantName, const void* _rawData, _uint _dataSize);
